@@ -1,17 +1,21 @@
-import './App.css';
-import Header from './Components/HeaderHome/Header';
-import Home from './Components/Home/Home';
-import Footer from './Components/Footer/Footer';
-// import Login from './Components/Login/Login';
+import AuthForm from './Components/AuthForm/AuthForm';
+import Home from './Components/Home/Home'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-      <Home/>
-      <Footer/>
-      {/* <Login/> */}
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/login" exact component={AuthForm}></Route>
+          <Route path="/" exact component={Home}></Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
