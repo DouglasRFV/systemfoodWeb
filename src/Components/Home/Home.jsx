@@ -2,25 +2,27 @@ import './Home.css';
 import React from 'react';
 import { Button, Stack } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useHistory } from 'react-router';
 
 import Header from '../HeaderHome/Header';
 import Footer from '../Footer/Footer';
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
-
+    
+    
+    const history = useHistory();
+    
     console.log('PROPS =>', props);
 
     return (
         <div>
             <Header/>
-            <Stack gap={4} className="col-lg-5 mx-auto marginStack">
-                <Button variant="primary" size="lg">Cadastrar Usuário</Button>
-                <Button variant="primary" size="lg">Cadastrar Produto</Button>
-                <Button variant="primary" size="lg">Realizar Pedido</Button>
-                <Button variant="primary" size="lg">Pedidos em Andamento</Button>
-                <Button variant="primary" size="lg">Clube de Desconto</Button>
-            </Stack>
+            <div className="d-grid gap-2 marginStack">
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/cadastrar-produto')}>Cadastrar Produto</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/realizar-pedido')}>Realizar Pedido</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/pedidos-andamento')}>Pedidos em Andamento</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/clube-desconto')}>Clube de Desconto</Button>
+            </div>
             <Footer/>
         </div>
     );

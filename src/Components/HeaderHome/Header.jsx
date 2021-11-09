@@ -10,6 +10,8 @@ export default (props) => {
 
     console.log('PROPS =>', props);
 
+    // console.log('auth', auth.currentUser._delegate);
+    // const user = auth.currentUser;
     const myFunction = () => {
        // inserir logout firebase
        auth().signOut();
@@ -25,6 +27,8 @@ export default (props) => {
                         className="imgHeader"
                         alt="Home"/>
                 </Navbar.Brand>
+                <h3 className="mt-0 mb-0 fontConfig">SystemFood</h3>
+                {/* <p>{user}</p> */}
                 <Nav className="justify-content-end" style={{ width: "100%" }} onClick={ () => myFunction() }>
                     <Nav.Link href="/login"><RiLogoutBoxRLine color="#f8f8f8" size={30}/></Nav.Link>
                 </Nav>

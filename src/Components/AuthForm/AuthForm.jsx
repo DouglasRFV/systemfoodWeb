@@ -2,6 +2,7 @@ import { useState, Fragment } from "react";
 import { Card, Menu, Form, Button } from "semantic-ui-react";
 import { auth } from "../../firebase";
 import { useHistory } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import "./AuthForm.css";
 
@@ -26,8 +27,12 @@ export default function AuthForm() {
             : await auth.createUserWithEmailAndPassword(email, password);
     
             if(user.user.uid) {
-                history.push("/");
+                localStorage.setItem("uid", user.user.uid);
+                this.history.push("/");
+            } else {
+                this.history.push("/");
             }
+            console.log('DADOS USER =>', user);
         } catch (err) {
           console.log(err);
         }

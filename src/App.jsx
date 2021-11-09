@@ -1,22 +1,29 @@
-import AuthForm from './Components/AuthForm/AuthForm';
-import Home from './Components/Home/Home'
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom';
+// import AuthForm from './Components/AuthForm/AuthForm';
+// import Home from './Components/Home/Home'
+// import {
+//   BrowserRouter as Router,
+//   Route,
+//   Switch
+// } from 'react-router-dom';
 
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route path="/login" exact component={AuthForm}></Route>
-          <Route path="/" exact component={Home}></Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
+// function App() {
+//   return (
+//     <Router>
+//       <div className="App">
+//         <Switch>
+//           <Route path="/login" exact component={AuthForm}></Route>
+//           <Route path="/" exact component={Home}></Route>
+//         </Switch>
+//       </div>
+//     </Router>
+//   );
+// }
+
+// export default App;
+
+import React from 'react';
+import Routes from './routes';
+
+const App = () => <Routes />;
 
 export default App;
