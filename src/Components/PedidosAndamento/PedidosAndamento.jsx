@@ -12,7 +12,7 @@ export default (props) => {
       <div>
         <h1>Pedidos em Andamento</h1>
       </div>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   )
 }

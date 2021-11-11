@@ -12,7 +12,7 @@ export default (props) => {
       <div>
         <h1>Realizar Pedido</h1>
       </div>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   )
 }
