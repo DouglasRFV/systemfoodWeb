@@ -18,7 +18,7 @@ export default (props) => {
         <div>
             <Header/>
             <div className="d-grid gap-2 marginStack">
-                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/cadastrar-lanche')}>Lanches</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/cadastrar-produtos')}>Cadastrar Produtos</Button>
                 <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/realizar-pedido')}>Realizar Pedido</Button>
                 <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/pedidos-andamento')}>Pedidos em Andamento</Button>
                 <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/clube-desconto')}>Clube de Desconto</Button>

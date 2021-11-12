@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useEffect } from "react";
-import { firebaseDb } from "../../firebase";
+// import React, { useState, useEffect } from "react";
+// import { firebaseDb } from "../../firebase";
 import { useHistory } from 'react-router';
 
 import './RealizarPedido.css'
@@ -63,7 +63,7 @@ const RealizarPedido = () => {
     //   }
     // }
 
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    // const [isModalVisible, setIsModalVisible] = useState(false);
     const history = useHistory();
 
 
