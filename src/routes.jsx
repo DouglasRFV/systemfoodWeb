@@ -4,6 +4,7 @@ import AuthForm from './Components/AuthForm/AuthForm';
 import CadastrarLanche from './Components/CadastrarLanche/CadastrarLanche';
 import ClubeDesconto from './Components/ClubeDesconto/ClubeDesconto';
 import Home from './Components/Home/Home';
+import MontarPedido from './Components/MontarPedido/MontarPedido';
 import PedidosAndamento from './Components/PedidosAndamento/PedidosAndamento';
 import RealizarPedido from './Components/RealizarPedido/RealizarPedido';
 
@@ -36,6 +37,7 @@ const Routes = () => (
             <Route exact path="/realizar-pedido" component={RealizarPedido} />
             <Route exact path="/pedidos-andamento" component={PedidosAndamento} />
             <Route exact path="/clube-desconto" component={ClubeDesconto} />
+            <Route exact path="/montar-pedido" component={MontarPedido} />
         </Switch>
     </BrowserRouter>
 );

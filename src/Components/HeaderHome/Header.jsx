@@ -7,7 +7,7 @@ import { auth } from "../../firebase";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
 
-    console.log('PROPS =>', props);
+    // console.log('PROPS =>', props);
 
     // console.log('auth', auth.currentUser._delegate);
     // const user = auth.currentUser;

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { firebaseDb } from "../../firebase";
 import FormularioCadastroLanche from "../FormularioCadastroLanche/FormularioCadastroLanche";
+import './CadastrarLanche.css'
 
 import Header from '../HeaderHome/Header';
 
@@ -65,7 +66,7 @@ const CadastrarLanche = () => {
     return (
       <div className="container-fluid">
         <Header/>
-        <div className="jumbotron jumbotron-fluid">
+        <div className="jumbotron jumbotron-fluid jumboPadding">
           <div className="container-fluid">
             <h1 className="display-4">Cadastrar Lanches</h1>
           </div>
