@@ -1,20 +1,22 @@
 import React, { useRef, useState } from "react"
-import { Form, Button, Card, Alert, Container } from "react-bootstrap"
+import { Form, Button, Card, Alert, Container, Row, Col, Toast } from "react-bootstrap"
 import { useAuth } from "../../contexts/AuthContext"
-import { Link, useHistory } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export default function Signup() {
-  const emailRef = useRef()
+  const emailRef = useRef();
   const passwordRef = useRef()
-  const passwordConfirmRef = useRef()
-  const { signup } = useAuth()
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-  const history = useHistory()
+  const passwordConfirmRef = useRef();
+  const adminRef = useRef();
+  const userRef = useRef();
+  const { signup } = useAuth();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showA, setShowA] = useState(false);
+  const toggleShowA = () => setShowA(!showA);
 
   async function handleSubmit(e) {
     e.preventDefault()
-
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
     }
@@ -22,8 +24,8 @@ export default function Signup() {
     try {
       setError("")
       setLoading(true)
-      await signup(emailRef.current.value, passwordRef.current.value)
-      history.push("/")
+      await signup(emailRef.current.value, passwordRef.current.value, adminRef.current.checked ? adminRef.current.value : userRef.current.value)
+      setShowA(true);
     } catch {
       setError("Failed to create an account")
     }
@@ -40,7 +42,7 @@ export default function Signup() {
 
         <Card>
           <Card.Body>
-            <div style={{ marginLeft: "80px" }}> <img src="/logo.png" alt="" /> </div>
+            <div style={{ "text-align": "center" }} > <img src="/logo.png" alt="" width="80" height="80" /> </div>
             <h2 className="text-center mb-4">Sign Up</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
@@ -49,23 +51,44 @@ export default function Signup() {
                 <Form.Control type="email" ref={emailRef} required />
               </Form.Group>
               <Form.Group id="password">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Senha</Form.Label>
                 <Form.Control type="password" ref={passwordRef} required />
               </Form.Group>
               <Form.Group id="password-confirm">
-                <Form.Label>Password Confirmation</Form.Label>
+                <Form.Label>Confirme a senha</Form.Label>
                 <Form.Control type="password" ref={passwordConfirmRef} required />
               </Form.Group>
+              <Form.Group className="mt-3" controlId="formBasicCheckbox">
+                <Form.Label>Tipo de usuário</Form.Label>
+                <Container>
+                  <Row>
+                    <Col> <input type="radio" value="admin" name="typeRef" ref={adminRef} /> Administrador</Col>
+                    <Col> <input type="radio" value="user" name="typeRef" ref={userRef} /> Usuário</Col>
+                  </Row>
+                </Container>
+              </Form.Group>
               <Button disabled={loading} className="w-100 mt-3" type="submit">
-                Sign Up
+                Cadastrar
               </Button>
             </Form>
           </Card.Body>
         </Card>
         <div className="w-100 text-center mt-2">
-          Already have an account? <Link to="/login">Log In</Link>
+          Já possui uma conta? <Link to="/login">Log In</Link>
         </div>
       </div>
+      <Toast show={showA} delay={3000} autohide onClose={toggleShowA} style={{ position: "absolute", "min-width": "300px", top: "1rem", left: "1rem" }}>
+        <Toast.Header>
+          <img
+            src="/logo.png"
+            className="rounded me-2"
+            alt=""
+            width="40" height="40"
+          />
+          <strong className="me-auto">SystemFood</strong>
+        </Toast.Header>
+        <Toast.Body><h6>Usuário cadastrado com sucesso!</h6></Toast.Body>
+      </Toast>
     </Container>
 
   )

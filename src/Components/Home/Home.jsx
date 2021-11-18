@@ -11,11 +11,25 @@ export default (props) => {
     
     
     const history = useHistory();
+    const typeUser = props.location.state;
     
-    // console.log('PROPS =>', props);
+    console.log('PROPS =>', props);
 
     return (
+      typeUser === 'admin' ?
         <div>
+            <Header/>
+            <div className="d-grid gap-2 marginStack">
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/cadastrar-produtos')}>Cadastrar Produtos</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/realizar-pedido')}>Realizar Pedido</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/pedidos-andamento')}>Pedidos em Andamento</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/clube-desconto')}>Clube de Desconto</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/controle-usuarios')}>Controle de Usuários</Button>
+            </div>
+            <Footer/>
+        </div>
+      : 
+      <div>
             <Header/>
             <div className="d-grid gap-2 marginStack">
                 <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/cadastrar-produtos')}>Cadastrar Produtos</Button>

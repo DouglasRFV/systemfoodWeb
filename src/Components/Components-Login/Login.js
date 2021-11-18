@@ -3,10 +3,10 @@ import { Form, Button, Card, Alert, Container } from "react-bootstrap"
 import { useAuth } from "../../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
 
-export default function Login() {
+export default function Login(props) {
   const emailRef = useRef()
   const passwordRef = useRef()
-  const { login } = useAuth()
+  const { login, getDataUser } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const history = useHistory()
@@ -15,10 +15,13 @@ export default function Login() {
     e.preventDefault()
 
     try {
-      setError("")
-      setLoading(true)
-      await login(emailRef.current.value, passwordRef.current.value)
-      history.push("/")
+      //douglas.rfvianna@gmail.com
+      setError("");
+      setLoading(true);
+      await login(emailRef.current.value, passwordRef.current.value);
+      const data = await getDataUser();
+      console.log('DATA USER =>', data);
+      history.push({ pathname: "/", state: data.typeUser });
     } catch {
       setError("Failed to log in")
     }
@@ -35,7 +38,7 @@ export default function Login() {
       <div className="w-100" style={{ maxWidth: "400px" }}>
         <Card>
           <Card.Body>
-            <div style={{ marginLeft: "80px" }}> <img src="/logo.png" alt="" /> </div>
+            <div style={{ "text-align": "center" }}> <img src="/logo.png" alt="" width="150" height="150" /> </div>
             <h2 className="text-center mb-4">Log In</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
@@ -44,7 +47,7 @@ export default function Login() {
                 <Form.Control type="email" ref={emailRef} required />
               </Form.Group>
               <Form.Group id="password">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Senha</Form.Label>
                 <Form.Control type="password" ref={passwordRef} required />
               </Form.Group>
               <Button disabled={loading} className="w-100 mt-3" type="submit">
@@ -52,7 +55,7 @@ export default function Login() {
               </Button>
             </Form>
             <div className="w-100 text-center mt-3">
-              <Link to="/forgot-password">Forgot Password?</Link>
+              <Link to="/forgot-password">Esqueceu a senha?</Link>
             </div>
           </Card.Body>
         </Card>

@@ -50,7 +50,7 @@ export default function UpdateProfile() {
 
         <Card>
           <Card.Body>
-            <div style={{ marginLeft: "80px" }}> <img src="/logo.png" alt="" /> </div>
+            <div style={{ "text-align": "center" }}> <img src="/logo.png" alt="" width="150" height="150" /> </div>
             <h2 className="text-center mb-4">Update Profile</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
