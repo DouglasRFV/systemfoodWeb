@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 // import './index.css';
 import App from './App';
 
-// import AuthForm from './Components/AuthForm/AuthForm';
-
 
 ReactDOM.render(
   <React.StrictMode>
