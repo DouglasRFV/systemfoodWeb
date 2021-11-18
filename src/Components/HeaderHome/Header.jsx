@@ -1,20 +1,28 @@
 import './Header.css';
-import React from 'react';
+import React, { useState } from "react"
 import { Nav, Navbar } from 'react-bootstrap';
-import { auth } from "../../firebase";
+import { useAuth } from "../../contexts/AuthContext";
+import { useHistory } from "react-router-dom"
 
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
 
-    // console.log('PROPS =>', props);
+  const [error, setError] = useState("")
+  const { currentUser, logout } = useAuth()
+  const history = useHistory()
 
-    // console.log('auth', auth.currentUser._delegate);
-    // const user = auth.currentUser;
-    const signOut = () => {
-       // inserir logout firebase
-       auth().signOut();
+    async function handleLogout() {
+      setError("")
+  
+      try {
+        await logout()
+        history.push("/login")
+      } catch {
+        setError("Failed to log out")
+      }
     }
+
     return (
         <div>
             <Navbar expand="lg" variant="dark" bg="dark">
@@ -28,10 +36,11 @@ export default (props) => {
                 </Navbar.Brand>
                 <a href="/"><h3 className="mt-0 mb-0 fontConfig">SystemFood</h3></a>
                 {/* <p>{user}</p> */}
-                <Nav className="justify-content-end" style={{ width: "100%" }} onClick={ () => signOut() }>
-                    <Nav.Link href="/login"></Nav.Link>
+                <Nav className="justify-content-end" style={{ width: "100%" }} onClick={ () => handleLogout() }>
+                    <Nav.Link href="/login"><i className="fas fa-sign-out-alt fa-2x"></i></Nav.Link>
                 </Nav>
             </Navbar>
         </div>
     );
 }
+<i class="fa-solid fa-arrow-right-from-bracket"></i>

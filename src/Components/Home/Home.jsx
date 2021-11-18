@@ -12,7 +12,7 @@ export default (props) => {
     
     const history = useHistory();
     
-    console.log('PROPS =>', props);
+    // console.log('PROPS =>', props);
 
     return (
         <div>

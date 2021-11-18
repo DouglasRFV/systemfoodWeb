@@ -1,5 +1,9 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import PrivateRoute from "./Components/Components-Login/PrivateRoute"
 
+import Signup from "./Components/Components-Login/Signup"
+import Login from "./Components/Components-Login/Login"
+import ForgotPassword from "./Components/Components-Login/ForgotPassword"
 import AuthForm from './Components/AuthForm/AuthForm';
 import CadastrarBebida from './Components/CadastrarBebida/CadastrarBebida';
 import CadastrarLanche from './Components/CadastrarLanche/CadastrarLanche';
@@ -10,38 +14,22 @@ import MontarPedido from './Components/MontarPedido/MontarPedido';
 import PedidosAndamento from './Components/PedidosAndamento/PedidosAndamento';
 import RealizarPedido from './Components/RealizarPedido/RealizarPedido';
 
-// const uid = localStorage.getItem("uid");
-// const PrivateRoute = ({ component: Component, ...rest }) => {
-
-//     console.log('UID =>', uid);
-//     console.log('COMPONENT =>', Component);
-//     console.log('REST =>', rest);
-    
-//     <Route 
-//     {...rest} 
-//     render={props =>
-//             uid ? (
-//                 <Component {...props} />
-//             ) : (
-//                 <Redirect to={{ pathname: "/login", state: { from: props.location }}}/>
-//             )
-//         }
-//     />
-// }
 
 const Routes = () => (
     <BrowserRouter>
         <Switch>
             <Route exact path="/login" component={AuthForm} />
-            {/* <PrivateRoute exact path="/" component={(props) => <Home {...props} />} /> */}
-            <Route exact path="/" component={Home} />
-            <Route exact path="/cadastrar-produtos" component={CadastrarProdutos} />
-            <Route exact path="/cadastrar-lanche" component={CadastrarLanche} />
-            <Route exact path="/cadastrar-bebida" component={CadastrarBebida} />
-            <Route exact path="/realizar-pedido" component={RealizarPedido} />
-            <Route exact path="/pedidos-andamento" component={PedidosAndamento} />
-            <Route exact path="/clube-desconto" component={ClubeDesconto} />
-            <Route exact path="/montar-pedido" component={MontarPedido} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/login" component={Login} />
+            <Route path="/forgot-password" component={ForgotPassword} />
+            <PrivateRoute exact path="/" component={Home} />
+            <PrivateRoute exact path="/cadastrar-produtos" component={CadastrarProdutos} />
+            <PrivateRoute exact path="/cadastrar-lanche" component={CadastrarLanche} />
+            <PrivateRoute exact path="/cadastrar-bebida" component={CadastrarBebida} />
+            <PrivateRoute exact path="/realizar-pedido" component={RealizarPedido} />
+            <PrivateRoute exact path="/pedidos-andamento" component={PedidosAndamento} />
+            <PrivateRoute exact path="/clube-desconto" component={ClubeDesconto} />
+            <PrivateRoute exact path="/montar-pedido" component={MontarPedido} />
         </Switch>
     </BrowserRouter>
 );
