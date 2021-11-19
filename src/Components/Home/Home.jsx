@@ -24,7 +24,7 @@ export default (props) => {
                 <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/realizar-pedido')}>Realizar Pedido</Button>
                 <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/pedidos-andamento')}>Pedidos em Andamento</Button>
                 <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/clube-desconto')}>Clube de Desconto</Button>
-                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/controle-usuarios')}>Controle de Usuários</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/controle-usuarios')}>Cadastro de Usuários</Button>
             </div>
             <Footer/>
         </div>
