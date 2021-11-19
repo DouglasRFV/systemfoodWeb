@@ -15,12 +15,12 @@ export default function Login(props) {
     e.preventDefault()
 
     try {
-      //douglas.rfvianna@gmail.com
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
       const data = await getDataUser();
       // console.log('DATA USER =>', data);
+      localStorage.setItem('typeUser', data.typeUser);
       history.push({ pathname: "/", state: data.typeUser });
     } catch {
       setError("Failed to log in")

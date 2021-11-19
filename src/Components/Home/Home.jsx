@@ -11,7 +11,9 @@ export default (props) => {
     
     
     const history = useHistory();
-    const typeUser = props.location.state;
+    const localTypeUser = localStorage.getItem('typeUser');
+    // const typeUser = props.location.state;
+    const typeUser = props.location.state ? props.location.state : localTypeUser;
     
     // console.log('PROPS =>', props);
 
