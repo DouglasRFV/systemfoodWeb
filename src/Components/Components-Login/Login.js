@@ -20,7 +20,7 @@ export default function Login(props) {
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
       const data = await getDataUser();
-      console.log('DATA USER =>', data);
+      // console.log('DATA USER =>', data);
       history.push({ pathname: "/", state: data.typeUser });
     } catch {
       setError("Failed to log in")

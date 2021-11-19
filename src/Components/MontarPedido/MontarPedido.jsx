@@ -2,7 +2,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
 import { firebaseDb } from "../../firebase";
-import InputSpinner from 'react-bootstrap-input-spinner'
+import firebase from "../../firebase";
+import { useHistory } from 'react-router';
+import { Toast } from "react-bootstrap";
+
+
 import './MontarPedido.css';
 
 import Header from '../HeaderHome/Header';
@@ -10,15 +14,19 @@ import Header from '../HeaderHome/Header';
 
 const MontarPedido = (props) => {
 
-  const mesa = props.location.state;
-  let total = 150.00;
+  const mesa = props.location.state.mesa;
+  let total = 0;
   let [dadosLanches, setDadosLanches] = useState({});
   let [dadosBebidas, setDadosBebidas] = useState({});
   let itensPedidoLanches = [];
   let itensPedidoBebidas = [];
+  const [showA, setShowA] = useState(false);
+  const toggleShowA = () => setShowA(!showA);
 
+  const db = firebase.firestore();
+  const history = useHistory();
 
-  let [idAtual, setIdAtual] = useState('');
+  // let [idAtual, setIdAtual] = useState('');
 
   useEffect(() => {
     firebaseDb.child('lanches').on('value', dbPhoto => {
@@ -42,34 +50,9 @@ const MontarPedido = (props) => {
     })
   }, []);
 
-  const addEdit = obj => {
-    if(idAtual === '') {
-      console.log('Pedido =>', obj);
-      firebaseDb.child('pedidos').push(
-        obj,
-        error => {
-          if(error) {
-            console.log('error =>', error);
-          } else {
-            setIdAtual('');
-          }
-        }
-      )
-    } else {
-      firebaseDb.child(`pedidos/${idAtual}`).set(
-        obj,
-        error => {
-          if(error) {
-            console.log('error =>', error);
-          } else {
-            setIdAtual('');
-          }
-        }
-      )
-    }
-  }
 
   function onChangeTable(nome, preco, qtd, tipo) {
+    total = 0;
     if (tipo === 'lanche') {
       if (itensPedidoLanches.some(item => item['nomeLanche'] === nome)) {
         for (let i in itensPedidoLanches) {
@@ -99,20 +82,54 @@ const MontarPedido = (props) => {
         });
       }
     }
-  };
 
-  function finalizarPedido(mesa) {
-    console.log('MESA =>', mesa);
-    // console.log('LANCHES =>', itensPedidoLanches);
     itensPedidoLanches.forEach((itemPedido => {
-      console.log('ITEN PEDIDO =>', itemPedido);
+      const valorLanches = parseFloat(itemPedido.precoLanche) * itemPedido.qtdeLanche
+      total += valorLanches;
     }));
 
     itensPedidoBebidas.forEach((itemPedido => {
-      console.log('ITEN PEDIDO =>', itemPedido);
+      const valorBebidas = parseFloat(itemPedido.precoBebida) * itemPedido.qtdeBebida
+      total += valorBebidas;
     }));
-    // console.log('BEBIDAS =>', itensPedidoBebidas);
+    console.log('TOTAL', total);
+    document.getElementById("total").innerHTML = `Valor do pedido:  R$${parseFloat(total).toFixed(2)}`;
+  };
 
+  function salvarPedido() {
+    // console.log('MESA =>', mesa);
+    // console.log('LANCHES =>', itensPedidoLanches);
+    // console.log('BEBIDAS =>', itensPedidoBebidas);
+    if (itensPedidoLanches.length > 0 || itensPedidoBebidas > 0) {
+      try {
+        db.collection('pedidos')
+          .doc(mesa)
+          .set({ itensPedidoLanches, itensPedidoBebidas, total: parseFloat(total).toFixed(2) });
+        setShowA(true);
+        setTimeout(() => {
+          history.push('/realizar-pedido');
+        }, 3000);
+      } catch (error) {
+        console.log('error', error);
+      }
+    }
+  }
+
+  function finalizarPedido() {
+    try {
+      itensPedidoLanches = [];
+      itensPedidoBebidas = [];
+      total = 0;
+      db.collection('pedidos')
+        .doc(mesa)
+        .set({ itensPedidoLanches, itensPedidoBebidas, total });
+      setShowA(true);
+      setTimeout(() => {
+        history.push('/realizar-pedido');
+      }, 3000);
+    } catch (error) {
+      console.log('error', error);
+    }
   }
 
   return (
@@ -121,9 +138,14 @@ const MontarPedido = (props) => {
       <div className="jumbotron jumbotron-fluid jumboPadding">
         <div className="container-fluid">
           <h1 className="display-4">Montar Pedido</h1>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/realizar-pedido">Realizar Pedidos</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Montar Pedido</li>
+          </ol>
         </div>
       </div>
-      <h4 className="mb-3">{`ITENS DO PEDIDO - ${props.location.state.mesa}`}</h4>
+      <h4 className="mb-3">{`ITENS DO PEDIDO - MESA ${props.location.state.mesa.slice(4)}`}</h4>
       <div className="row">
         <div className="col-md-6">
           <h5>LANCHES</h5>
@@ -180,11 +202,25 @@ const MontarPedido = (props) => {
       </div>
       <div className="row">
         <div className="col-md-6 mt-5"></div>
-        <div className="col-md-6 mt-5">
-          <button onClick={() => { finalizarPedido(mesa) }} type="button" className="btn btn-primary float-right mr-5 btn-lg">Finalizar Pedido</button>
-          <h4 className="float-right mr-5 mt-2">{`Valor do pedido:  R$${total}`}</h4>
+        <div className="col-md-6 mt-4">
+          <button onClick={() => salvarPedido()} type="button" className="btn btn-primary float-right mr-2 btn-lg">Salvar Pedido</button>
         </div>
       </div>
+      <div>
+        <h4 id="total" className="float-right mt-2 mr-2">{`Valor do pedido:  R$${parseFloat(total).toFixed(2)}`}</h4>
+      </div>
+      <Toast show={showA} delay={3000} autohide onClose={toggleShowA} style={{ position: "absolute", "min-width": "300px", bottom: "1rem", left: "1rem" }}>
+        <Toast.Header>
+          <img
+            src="/logo.png"
+            className="rounded me-2"
+            alt=""
+            width="40" height="40"
+          />
+          <strong className="me-auto">SystemFood</strong>
+        </Toast.Header>
+        <Toast.Body><h4>Pedido salvo com sucesso!</h4></Toast.Body>
+      </Toast>
     </div>
 
   );

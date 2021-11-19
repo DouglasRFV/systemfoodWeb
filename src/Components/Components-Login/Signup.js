@@ -24,7 +24,12 @@ export default function Signup() {
     try {
       setError("")
       setLoading(true)
-      await signup(emailRef.current.value, passwordRef.current.value, adminRef.current.checked ? adminRef.current.value : userRef.current.value)
+      await signup(emailRef.current.value, passwordRef.current.value, adminRef.current.checked ? adminRef.current.value : userRef.current.value);
+      emailRef.current.value = ''; 
+      passwordRef.current.value = ''; 
+      passwordConfirmRef.current.value = '';
+      adminRef.current.checked = false;
+      userRef.current.checked = false;
       setShowA(true);
     } catch {
       setError("Failed to create an account")
@@ -77,7 +82,7 @@ export default function Signup() {
           Já possui uma conta? <Link to="/login">Log In</Link>
         </div>
       </div>
-      <Toast show={showA} delay={3000} autohide onClose={toggleShowA} style={{ position: "absolute", "min-width": "300px", top: "1rem", left: "1rem" }}>
+      <Toast show={showA} delay={4000} autohide onClose={toggleShowA}  style={{ position: "absolute", "min-width": "300px", bottom: "1rem", right: "1rem" }}>
         <Toast.Header>
           <img
             src="/logo.png"

@@ -16,6 +16,7 @@ import Home from './Components/Home/Home';
 import MontarPedido from './Components/MontarPedido/MontarPedido';
 import PedidosAndamento from './Components/PedidosAndamento/PedidosAndamento';
 import RealizarPedido from './Components/RealizarPedido/RealizarPedido';
+import ItensPedido from "./Components/ItensPedido/ItensPedido";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
               <PrivateRoute exact path="/cadastrar-bebida" component={CadastrarBebida} />
               <PrivateRoute exact path="/realizar-pedido" component={RealizarPedido} />
               <PrivateRoute exact path="/pedidos-andamento" component={PedidosAndamento} />
+              <PrivateRoute exact path="/itens-pedido" component={ItensPedido} />
               <PrivateRoute exact path="/clube-desconto" component={ClubeDesconto} />
               <PrivateRoute exact path="/montar-pedido" component={MontarPedido} />
             </Switch>

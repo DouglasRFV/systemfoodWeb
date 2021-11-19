@@ -13,7 +13,7 @@ export default (props) => {
     const history = useHistory();
     const typeUser = props.location.state;
     
-    console.log('PROPS =>', props);
+    // console.log('PROPS =>', props);
 
     return (
       typeUser === 'admin' ?
