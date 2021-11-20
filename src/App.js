@@ -17,6 +17,7 @@ import MontarPedido from './Components/MontarPedido/MontarPedido';
 import PedidosAndamento from './Components/PedidosAndamento/PedidosAndamento';
 import RealizarPedido from './Components/RealizarPedido/RealizarPedido';
 import ItensPedido from "./Components/ItensPedido/ItensPedido";
+import Cardapio from "./Components/Cardapio/Cardapio";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Switch>
               <Route path="/controle-usuarios" component={Signup} />
               <Route path="/login" component={Login} />
+              <Route path="/cardapio" component={Cardapio} />
               <PrivateRoute path="/atualizar-perfil" component={UpdateProfile} />
               <PrivateRoute exact path="/" component={Home} />
               <Route path="/forgot-password" component={ForgotPassword} />
