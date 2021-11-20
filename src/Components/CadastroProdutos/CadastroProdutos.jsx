@@ -25,7 +25,7 @@ const CadastrarProdutos = () => {
         <div className="col-md-5 card ml-5 mr-5">
           <div className ="card-body">
           <h5 className ="card-title">Cadastrar Lanche</h5>
-          <p className ="card-text">Clique para acessar o formulário de adastro de lanches.</p>
+          <p className ="card-text">Clique para acessar o formulário de cadastro de lanches.</p>
           <a onClick={() => history.push('/cadastrar-lanche')} className ="btn btn-primary">Cadastrar</a>
           </div>
         </div>
@@ -33,7 +33,7 @@ const CadastrarProdutos = () => {
         <div className="col-md-5 card ml-5 mr-5">
           <div className ="card-body">
           <h5 className ="card-title">Cadastrar Bebida</h5>
-          <p className ="card-text">Clique para acessar o formulário de adastro de bebidas.</p>
+          <p className ="card-text">Clique para acessar o formulário de cadastro de bebidas.</p>
           <a onClick={() => history.push('/cadastrar-bebida')} className ="btn btn-primary">Cadastrar</a>
           </div>
         </div>

@@ -1,16 +1,17 @@
 import './Header.css';
 import React, { useState } from "react"
-import { Nav, Navbar, Tooltip } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import { useAuth } from "../../contexts/AuthContext";
 import { useHistory } from "react-router-dom"
 
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (props) => {
+export default () => {
 
-  const [error, setError] = useState("")
-  const { currentUser, logout } = useAuth()
-  const history = useHistory()
+  const [ setError] = useState("")
+  const { logout } = useAuth()
+  const history = useHistory();
+  const emailUser = localStorage.getItem('emailUser');
 
   async function handleLogout() {
     setError("")
@@ -35,7 +36,7 @@ export default (props) => {
             alt="Home" />
         </Navbar.Brand>
         <a href="/"><h3 className="mt-0 mb-0 fontConfig">SystemFood</h3></a>
-        {/* <p>{user}</p> */}
+        <Nav.Link title="Perfil" href="/atualizar-perfil"><h6 className="mt-3 text-info">{emailUser}</h6></Nav.Link>
         <Nav className="justify-content-end" style={{ width: "100%" }} onClick={() => handleLogout()}>
           <Nav.Link title="Sair" href="/login"><i className="fas fa-sign-out-alt fa-2x"></i></Nav.Link>
         </Nav>

@@ -18,9 +18,9 @@ export default function ForgotPassword() {
       setError("")
       setLoading(true)
       await resetPassword(emailRef.current.value)
-      setMessage("Check your inbox for further instructions")
+      setMessage("Check your inbox for further instructionsVerifique a sua caixa de entrada para mais instruções")
     } catch {
-      setError("Failed to reset password")
+      setError("Erro ao resetar senha")
     }
 
     setLoading(false)

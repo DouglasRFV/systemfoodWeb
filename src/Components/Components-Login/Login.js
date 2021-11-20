@@ -17,9 +17,10 @@ export default function Login(props) {
     try {
       setError("");
       setLoading(true);
+      localStorage.setItem('emailUser', emailRef.current.value);
       await login(emailRef.current.value, passwordRef.current.value);
       const data = await getDataUser();
-      // console.log('DATA USER =>', data);
+      console.log('DATA USER =>', data);
       localStorage.setItem('typeUser', data.typeUser);
       history.push({ pathname: "/", state: data.typeUser });
     } catch {
