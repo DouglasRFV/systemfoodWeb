@@ -68,10 +68,10 @@ const CadastrarBebida = () => {
       <div className="jumbotron jumbotron-fluid jumboPadding">
         <div className="container-fluid">
           <h1 className="display-4">Cadastrar Bebidas</h1>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/cadastrar-produtos">Cadastrar Produtos</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Cadastrar Bebidas</li>
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item"><a href="/">Home</a></li>
+            <li className="breadcrumb-item"><a href="/cadastrar-produtos">Cadastrar Produtos</a></li>
+            <li className="breadcrumb-item active" aria-current="page">Cadastrar Bebidas</li>
           </ol>
         </div>
       </div>

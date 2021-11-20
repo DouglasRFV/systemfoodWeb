@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert, Container, Row, Col, Toast } from "react-bootstrap"
 import { useAuth } from "../../contexts/AuthContext"
-import { Link } from "react-router-dom"
 
 export default function Signup() {
   const emailRef = useRef();
@@ -25,8 +24,8 @@ export default function Signup() {
       setError("")
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value, adminRef.current.checked ? adminRef.current.value : userRef.current.value);
-      emailRef.current.value = ''; 
-      passwordRef.current.value = ''; 
+      emailRef.current.value = '';
+      passwordRef.current.value = '';
       passwordConfirmRef.current.value = '';
       adminRef.current.checked = false;
       userRef.current.checked = false;
@@ -78,11 +77,8 @@ export default function Signup() {
             </Form>
           </Card.Body>
         </Card>
-        <div className="w-100 text-center mt-2">
-          Já possui uma conta? <Link to="/login">Log In</Link>
-        </div>
       </div>
-      <Toast show={showA} delay={4000} autohide onClose={toggleShowA}  style={{ position: "absolute", "min-width": "300px", bottom: "1rem", right: "1rem" }}>
+      <Toast show={showA} delay={4000} autohide onClose={toggleShowA} style={{ position: "absolute", "min-width": "300px", bottom: "1rem", right: "1rem" }}>
         <Toast.Header>
           <img
             src="/logo.png"

@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
+import { Toast } from "react-bootstrap";
 
 const FormularioCadastroClube = (props) => {
 
@@ -10,6 +11,9 @@ const FormularioCadastroClube = (props) => {
     telefoneCliente: ''
   };
 
+  const [showA, setShowA] = useState(false);
+  const toggleShowA = () => setShowA(!showA);
+
   let [values, setValues] = useState(camposIniciais);
 
   useEffect(() => {
@@ -19,10 +23,10 @@ const FormularioCadastroClube = (props) => {
       })
     } else {
       setValues({
-        ...props.dadosClintes[props.idAtual]
+        ...props.dadosClientes[props.idAtual]
       })
     }
-  }, [props.idAtual, props.dadosClintes]);
+  }, [props.idAtual, props.dadosClientes]);
 
   const inputChange = e => {
     let { name, value } = e.target
@@ -35,7 +39,11 @@ const FormularioCadastroClube = (props) => {
 
   const manipuladorFormEnvio = e => {
     e.preventDefault();
-    props.addEdit(values);
+    if(values.nomeCliente === '' || values.cpfCliente === '') {
+      setShowA(true);
+    } else {
+      props.addEdit(values);
+    }
   }
 
   return (
@@ -46,7 +54,7 @@ const FormularioCadastroClube = (props) => {
             <i className="fas fa-solid fa-user"></i>
           </div>
         </div>
-        <input className="form-control" placeholder="Nome" name="nomeCliente" value={values.nomeCliente} onChange={inputChange} />
+        <input required className="form-control" placeholder="Nome" name="nomeCliente" value={values.nomeCliente} onChange={inputChange} />
       </div>
 
       <div className="row">
@@ -56,7 +64,7 @@ const FormularioCadastroClube = (props) => {
               <i className="fas fa-duotone fa-id-card"></i>
             </div>
           </div>
-          <input className="form-control cpf-mask" placeholder="CPF" name="cpfCliente" value={values.cpfCliente} onChange={inputChange} />
+          <input required className="form-control cpf-mask" placeholder="CPF" name="cpfCliente" value={values.cpfCliente} onChange={inputChange} />
         </div>
       </div>
 
@@ -74,6 +82,19 @@ const FormularioCadastroClube = (props) => {
       <div className="form-group">
         <input type="submit" value={props.idAtual === '' ? 'Salvar' : 'Atualizar'} className="btn btn-primary btn-block" />
       </div>
+
+      <Toast show={showA} delay={3000} autohide onClose={toggleShowA} style={{ position: "absolute", "min-width": "300px", bottom: "1rem", right: "1rem" }}>
+        <Toast.Header>
+          <img
+            src="/logo.png"
+            className="rounded me-2"
+            alt=""
+            width="40" height="40"
+          />
+          <strong className="me-auto">SystemFood</strong>
+        </Toast.Header>
+        <Toast.Body><h6>Insira as informações corretamente!</h6></Toast.Body>
+      </Toast>
     </form>
   )
 }

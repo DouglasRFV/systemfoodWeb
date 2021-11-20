@@ -26,8 +26,6 @@ const MontarPedido = (props) => {
   const db = firebase.firestore();
   const history = useHistory();
 
-  // let [idAtual, setIdAtual] = useState('');
-
   useEffect(() => {
     firebaseDb.child('lanches').on('value', dbPhoto => {
       if (dbPhoto.val() !== null) {
@@ -107,28 +105,11 @@ const MontarPedido = (props) => {
           .set({ itensPedidoLanches, itensPedidoBebidas, total: parseFloat(total).toFixed(2) });
         setShowA(true);
         setTimeout(() => {
-          history.push('/realizar-pedido');
+          history.push('/pedidos-andamento');
         }, 3000);
       } catch (error) {
         console.log('error', error);
       }
-    }
-  }
-
-  function finalizarPedido() {
-    try {
-      itensPedidoLanches = [];
-      itensPedidoBebidas = [];
-      total = 0;
-      db.collection('pedidos')
-        .doc(mesa)
-        .set({ itensPedidoLanches, itensPedidoBebidas, total });
-      setShowA(true);
-      setTimeout(() => {
-        history.push('/realizar-pedido');
-      }, 3000);
-    } catch (error) {
-      console.log('error', error);
     }
   }
 
@@ -138,10 +119,10 @@ const MontarPedido = (props) => {
       <div className="jumbotron jumbotron-fluid jumboPadding">
         <div className="container-fluid">
           <h1 className="display-4">Montar Pedido</h1>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/realizar-pedido">Realizar Pedidos</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Montar Pedido</li>
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item"><a href="/">Home</a></li>
+            <li className="breadcrumb-item"><a href="/realizar-pedido">Realizar Pedidos</a></li>
+            <li className="breadcrumb-item active" aria-current="page">Montar Pedido</li>
           </ol>
         </div>
       </div>

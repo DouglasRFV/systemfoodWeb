@@ -1,6 +1,5 @@
 import React from "react";
 import './Footer.css';
-// import { DiCode } from "react-icons/di";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {

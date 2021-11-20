@@ -12,11 +12,8 @@ export default (props) => {
     
     const history = useHistory();
     const localTypeUser = localStorage.getItem('typeUser');
-    // const typeUser = props.location.state;
     const typeUser = props.location.state ? props.location.state : localTypeUser;
     
-    // console.log('PROPS =>', props);
-
     return (
       typeUser === 'admin' ?
         <div>

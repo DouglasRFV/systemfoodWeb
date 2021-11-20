@@ -44,38 +44,24 @@ const PedidosAndamento = () => {
       <div className="jumbotron jumbotron-fluid jumboPadding">
         <div className="container-fluid">
           <h1 className="display-4">Pedidos em Andamento</h1>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Pedidos em andamento</li>
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item"><a href="/">Home</a></li>
+            <li className="breadcrumb-item active" aria-current="page">Pedidos em andamento</li>
           </ol>
         </div>
       </div>
-
       <div className="row">
         <div className="col-md-5">
           <h4>Mesas</h4>
           <div className="row">
             <div className="col-md-6">
               <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa01') } value={'MESA 01'} className="btn btn-primary btn-lg btn-block p-3" />
+                <input type="submit" onClick={() => getPedido('mesa01')} value={'MESA 01'} className="btn btn-primary btn-lg btn-block p-3" />
               </div>
             </div>
             <div className="col-md-6">
               <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa02') } value={'MESA 02'} className="btn btn-primary btn-lg btn-block p-3" />
-              </div>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-md-6">
-              <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa03') } value={'MESA 03'} className="btn btn-primary btn-lg btn-block p-3" />
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa04') } value={'MESA 04'} className="btn btn-primary btn-lg btn-block p-3" />
+                <input type="submit" onClick={() => getPedido('mesa02')} value={'MESA 02'} className="btn btn-primary btn-lg btn-block p-3" />
               </div>
             </div>
           </div>
@@ -83,12 +69,25 @@ const PedidosAndamento = () => {
           <div className="row">
             <div className="col-md-6">
               <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa05') } value={'MESA 05'} className="btn btn-primary btn-lg btn-block p-3" />
+                <input type="submit" onClick={() => getPedido('mesa03')} value={'MESA 03'} className="btn btn-primary btn-lg btn-block p-3" />
               </div>
             </div>
             <div className="col-md-6">
               <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa06') } value={'MESA 06'} className="btn btn-primary btn-lg btn-block p-3" />
+                <input type="submit" onClick={() => getPedido('mesa04')} value={'MESA 04'} className="btn btn-primary btn-lg btn-block p-3" />
+              </div>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-md-6">
+              <div className="form-group">
+                <input type="submit" onClick={() => getPedido('mesa05')} value={'MESA 05'} className="btn btn-primary btn-lg btn-block p-3" />
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="form-group">
+                <input type="submit" onClick={() => getPedido('mesa06')} value={'MESA 06'} className="btn btn-primary btn-lg btn-block p-3" />
               </div>
             </div>
           </div>
