@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { Toast } from "react-bootstrap";
+import { i18n } from '../../translate/i18n';
 
 const FormularioCadastroBebida = (props) => {
 
@@ -53,7 +54,7 @@ const FormularioCadastroBebida = (props) => {
             <i className="fas fa-solid fa-burger"></i>
           </div>
         </div>
-      <input required className="form-control" placeholder="Nome do Bebida" name="nomeBebida" value={values.nomeBebida} onChange={inputChange}/>
+      <input required className="form-control" placeholder={i18n.t('formTitles.nomeBebida')} name="nomeBebida" value={values.nomeBebida} onChange={inputChange}/>
       </div>
 
       <div className="row">
@@ -63,12 +64,12 @@ const FormularioCadastroBebida = (props) => {
               <i className="fas fa-duotone fa-dollar-sign"></i>
             </div>
           </div>
-          <input required className="form-control" placeholder="Preço do Bebida" name="preco" value={values.preco} onChange={inputChange}/>
+          <input required className="form-control" placeholder={i18n.t('formTitles.precoBebida')} name="preco" value={values.preco} onChange={inputChange}/>
         </div>
       </div>
 
       <div className="form-group">
-        <input type="submit" value={ props.idAtual === '' ? 'Salvar' : 'Atualizar' } className="btn btn-primary btn-block" />
+        <input type="submit" value={ props.idAtual === '' ? i18n.t('buttons.salvar') : i18n.t('buttons.atualizar') } className="btn btn-primary btn-block" />
       </div>
 
       <Toast show={showA} delay={3000} autohide onClose={toggleShowA} style={{ position: "absolute", "min-width": "300px", bottom: "1rem", right: "1rem" }}>

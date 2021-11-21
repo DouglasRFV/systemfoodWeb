@@ -5,7 +5,7 @@ import { firebaseDb } from "../../firebase";
 import firebase from "../../firebase";
 import { useHistory } from 'react-router';
 import { Toast } from "react-bootstrap";
-
+import { i18n } from '../../translate/i18n';
 
 import './MontarPedido.css';
 
@@ -91,14 +91,14 @@ const MontarPedido = (props) => {
       total += valorBebidas;
     }));
     console.log('TOTAL', total);
-    document.getElementById("total").innerHTML = `Valor do pedido:  R$${parseFloat(total).toFixed(2)}`;
+    document.getElementById("total").innerHTML = `${i18n.t('messages.valorPedido')}${parseFloat(total).toFixed(2)}`;
   };
 
   function salvarPedido() {
     // console.log('MESA =>', mesa);
     // console.log('LANCHES =>', itensPedidoLanches);
     // console.log('BEBIDAS =>', itensPedidoBebidas);
-    if (itensPedidoLanches.length > 0 || itensPedidoBebidas > 0) {
+    if (itensPedidoLanches.length > 0 || itensPedidoBebidas.length > 0) {
       try {
         db.collection('pedidos')
           .doc(mesa)
@@ -118,24 +118,24 @@ const MontarPedido = (props) => {
       <Header />
       <div className="jumbotron jumbotron-fluid jumboPadding">
         <div className="container-fluid">
-          <h1 className="display-4">Montar Pedido</h1>
+          <h1 className="display-4">{i18n.t('titles.montarPedido')}</h1>
           <ol className="breadcrumb">
             <li className="breadcrumb-item"><a href="/">Home</a></li>
-            <li className="breadcrumb-item"><a href="/realizar-pedido">Realizar Pedidos</a></li>
-            <li className="breadcrumb-item active" aria-current="page">Montar Pedido</li>
+            <li className="breadcrumb-item"><a href="/realizar-pedido">{i18n.t('titles.realizarPedidos')}</a></li>
+            <li className="breadcrumb-item active" aria-current="page">{i18n.t('titles.montarPedido')}</li>
           </ol>
         </div>
       </div>
-      <h4 className="mb-3">{`ITENS DO PEDIDO - MESA ${props.location.state.mesa.slice(4)}`}</h4>
+      <h4 className="mb-3">{`${i18n.t('messages.itensPedido')} ${props.location.state.mesa.slice(4)}`}</h4>
       <div className="row">
         <div className="col-md-6">
-          <h5>LANCHES</h5>
+          <h5>{i18n.t('titles.lanches')}</h5>
           <table className="table table-striped">
             <thead className="thead-light">
               <tr>
-                <th className="col-md-5">Nome Lanche</th>
-                <th className="col-md-4">Preço</th>
-                <th className="col-md-3">Quantidade</th>
+                <th className="col-md-5">{i18n.t('formTitles.nomeLanche')}</th>
+                <th className="col-md-4">{i18n.t('formTitles.precoLanche')}</th>
+                <th className="col-md-3">{i18n.t('formTitles.qtde')}</th>
               </tr>
             </thead>
             <tbody>
@@ -155,13 +155,13 @@ const MontarPedido = (props) => {
           </table>
         </div>
         <div className="col-md-6">
-          <h5>BEBIDAS</h5>
+          <h5>{i18n.t('titles.bebidas')}</h5>
           <table className="table table-striped">
             <thead className="thead-light">
               <tr>
-                <th className="col-md-5">Nome Lanche</th>
-                <th className="col-md-4">Preço</th>
-                <th className="col-md-3">Quantidade</th>
+                <th className="col-md-5">{i18n.t('formTitles.nomeBebida')}</th>
+                <th className="col-md-4">{i18n.t('formTitles.precoBebida')}</th>
+                <th className="col-md-3">{i18n.t('formTitles.qtde')}</th>
               </tr>
             </thead>
             <tbody onClick={() => onChangeTable()}>
@@ -184,11 +184,11 @@ const MontarPedido = (props) => {
       <div className="row">
         <div className="col-md-6 mt-5"></div>
         <div className="col-md-6 mt-4">
-          <button onClick={() => salvarPedido()} type="button" className="btn btn-primary float-right mr-2 btn-lg">Salvar Pedido</button>
+          <button onClick={() => salvarPedido()} type="button" className="btn btn-primary float-right mr-2 btn-lg">{i18n.t('buttons.salvar')}</button>
         </div>
       </div>
       <div>
-        <h4 id="total" className="float-right mt-2 mr-2">{`Valor do pedido:  R$${parseFloat(total).toFixed(2)}`}</h4>
+        <h4 id="total" className="float-right mt-2 mr-2">{`${i18n.t('messages.valorPedido')}${parseFloat(total).toFixed(2)}`}</h4>
       </div>
       <Toast show={showA} delay={3000} autohide onClose={toggleShowA} style={{ position: "absolute", "min-width": "300px", bottom: "1rem", left: "1rem" }}>
         <Toast.Header>
@@ -200,7 +200,7 @@ const MontarPedido = (props) => {
           />
           <strong className="me-auto">SystemFood</strong>
         </Toast.Header>
-        <Toast.Body><h4>Pedido salvo com sucesso!</h4></Toast.Body>
+        <Toast.Body><h4>{i18n.t('messages.toastPedidoSalvo')}</h4></Toast.Body>
       </Toast>
     </div>
 

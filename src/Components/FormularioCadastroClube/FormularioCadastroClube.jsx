@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { Toast } from "react-bootstrap";
+import { i18n } from '../../translate/i18n';
+
 
 const FormularioCadastroClube = (props) => {
 
@@ -54,7 +56,7 @@ const FormularioCadastroClube = (props) => {
             <i className="fas fa-solid fa-user"></i>
           </div>
         </div>
-        <input required className="form-control" placeholder="Nome" name="nomeCliente" value={values.nomeCliente} onChange={inputChange} />
+        <input required className="form-control" placeholder={i18n.t('formTitles.nomeCliente')} name="nomeCliente" value={values.nomeCliente} onChange={inputChange} />
       </div>
 
       <div className="row">
@@ -64,7 +66,7 @@ const FormularioCadastroClube = (props) => {
               <i className="fas fa-duotone fa-id-card"></i>
             </div>
           </div>
-          <input required className="form-control cpf-mask" placeholder="CPF" name="cpfCliente" value={values.cpfCliente} onChange={inputChange} />
+          <input required className="form-control" inputMask="999.999.99-99" placeholder={i18n.t('formTitles.documento')} name="cpfCliente" value={values.cpfCliente} onChange={inputChange} />
         </div>
       </div>
 
@@ -75,7 +77,7 @@ const FormularioCadastroClube = (props) => {
               <i className="fas fa-regular fa-phone"></i>
             </div>
           </div>
-          <input id="telefone" className="form-control" placeholder="Telefone" name="telefoneCliente" value={values.telefoneCliente} onChange={inputChange} />
+          <input id="telefone" className="form-control" placeholder={i18n.t('formTitles.telefone')} name="telefoneCliente" value={values.telefoneCliente} onChange={inputChange} />
         </div>
       </div>
 

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { firebaseDb } from "../../firebase";
 import FormularioCadastroBebida from "../FormularioCadastroBebida/FormularioCadastroBebida";
+import { i18n } from '../../translate/i18n';
 
 import Header from '../HeaderHome/Header';
 
@@ -51,7 +52,7 @@ const CadastrarBebida = () => {
   }
 
   const deleteBebida = key => {
-    if (window.confirm('Deseja realmente deletar esse registro?')) {
+    if (window.confirm(`${i18n.t('messages.confirmDelete')}`)) {
       firebaseDb.child(`bebidas/${key}`).remove(
         error => {
           if (error) {
@@ -67,11 +68,11 @@ const CadastrarBebida = () => {
       <Header />
       <div className="jumbotron jumbotron-fluid jumboPadding">
         <div className="container-fluid">
-          <h1 className="display-4">Cadastrar Bebidas</h1>
+          <h1 className="display-4">{i18n.t('titles.cadastrarBebidas')}</h1>
           <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a href="/">Home</a></li>
-            <li className="breadcrumb-item"><a href="/cadastrar-produtos">Cadastrar Produtos</a></li>
-            <li className="breadcrumb-item active" aria-current="page">Cadastrar Bebidas</li>
+            <li className="breadcrumb-item"><a href="/">{i18n.t('titles.home')}</a></li>
+            <li className="breadcrumb-item"><a href="/cadastrar-produtos">{i18n.t('titles.cadastrarProdutos')}</a></li>
+            <li className="breadcrumb-item active" aria-current="page">{i18n.t('titles.cadastrarBebidas')}</li>
           </ol>
         </div>
       </div>
@@ -84,9 +85,9 @@ const CadastrarBebida = () => {
           <table className="table table-striped">
             <thead className="thead-light">
               <tr>
-                <td>Nome Bebida</td>
-                <td>Preço</td>
-                <td>Ações</td>
+                <td>{i18n.t('formTitles.nomeBebida')}</td>
+                <td>{i18n.t('formTitles.precoBebida')}</td>
+                <td>{i18n.t('titles.acoes')}</td>
               </tr>
             </thead>
             <tbody>

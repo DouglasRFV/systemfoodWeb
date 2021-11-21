@@ -6,6 +6,7 @@ import { Toast } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { firebaseDb } from "../../firebase";
 import FormularioCadastroClube from "../FormularioCadastroClube/FormularioCadastroClube";
+import { i18n } from '../../translate/i18n';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
@@ -73,10 +74,10 @@ export default (props) => {
       <Header />
       <div className="jumbotron jumbotron-fluid jumboPadding">
         <div className="container-fluid">
-          <h1 className="display-4">Clube de Desconto</h1>
+          <h1 className="display-4">{i18n.t('titles.clubeDesconto')}</h1>
           <ol className="breadcrumb">
             <li className="breadcrumb-item"><a href="/">Home</a></li>
-            <li className="breadcrumb-item active" aria-current="page">Clube de Desconto</li>
+            <li className="breadcrumb-item active" aria-current="page">{i18n.t('titles.clubeDesconto')}</li>
           </ol>
         </div>
       </div>
@@ -88,10 +89,10 @@ export default (props) => {
           <table className="table table-striped">
             <thead className="thead-light">
               <tr>
-                <td>Nome do Cliente</td>
-                <td>CPF</td>
-                <td>Telefone</td>
-                <td>Ações</td>
+                <td>{i18n.t('formTitles.nomeCliente')}</td>
+                <td>{i18n.t('formTitles.documento')}</td>
+                <td>{i18n.t('formTitles.telefone')}</td>
+                <td>{i18n.t('titles.acoes')}</td>
               </tr>
             </thead>
             <tbody>

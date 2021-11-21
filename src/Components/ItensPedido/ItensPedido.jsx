@@ -5,6 +5,7 @@ import firebase from "../../firebase"
 import { Toast } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { firebaseDb } from "../../firebase";
+import { i18n } from '../../translate/i18n';
 
 import Header from '../HeaderHome/Header';
 
@@ -27,7 +28,7 @@ const ItensPedido = (props) => {
     docRef.get().then((doc) => {
       if (doc.exists) {
         total = doc.data().total;
-        document.getElementById("total").innerHTML = `Valor do pedido:  R$${parseFloat(total).toFixed(2)}`;
+        document.getElementById("total").innerHTML = `${i18n.t('messages.valorPedido')}${parseFloat(total).toFixed(2)}`;
         setDadosLanches({
           ...doc.data().itensPedidoLanches
         });
@@ -74,10 +75,10 @@ const ItensPedido = (props) => {
         const clientes = dados.val();
         Object.keys(clientes).map(id => {
           cpfClientes.push(clientes[id].cpfCliente);
-          arrayCompras.push({ 
-            "id": id, 
-            "cpfCliente": clientes[id].cpfCliente, 
-            "qtdeCompras": clientes[id].qtdeCompras 
+          arrayCompras.push({
+            "id": id,
+            "cpfCliente": clientes[id].cpfCliente,
+            "qtdeCompras": clientes[id].qtdeCompras
           });
           return clientes;
         })
@@ -133,17 +134,17 @@ const ItensPedido = (props) => {
       <Header />
       <div className="jumbotron jumbotron-fluid jumboPadding">
         <div className="container-fluid">
-          <h1 className="display-4">Itens do Pedido</h1>
+          <h1 className="display-4">{i18n.t('titles.realizarPedidos')}</h1>
           <ol className="breadcrumb">
             <li className="breadcrumb-item"><a href="/">Home</a></li>
-            <li className="breadcrumb-item"><a href="/pedidos-andamento">Pedidos em Andamento</a></li>
-            <li className="breadcrumb-item active" aria-current="page">Itens do pedido</li>
+            <li className="breadcrumb-item"><a href="/pedidos-andamento">{i18n.t('titles.pedidosAndamento')}</a></li>
+            <li className="breadcrumb-item active" aria-current="page">{i18n.t('titles.realizarPedidos')}</li>
           </ol>
         </div>
       </div>
       <div className="row">
         <div className="col-md-8">
-          <h6 className="float-right mt-2">Aplicar clube de desconto?</h6>
+          <h6 className="float-right mt-2">{i18n.t('messages.aplicarClube')}</h6>
         </div>
         <div className="form-group input-group col-md-4">
           <div className="input-group-prepend">
@@ -152,19 +153,19 @@ const ItensPedido = (props) => {
             </div>
           </div>
           <input id="cpf" className="form-control" placeholder="CPF" name="cpf" />
-          <button onClick={() => calculaDesconto()} type="button" className="btn btn-primary">Desconto</button>
+          <button onClick={() => calculaDesconto()} type="button" className="btn btn-primary">{i18n.t('buttons.desconto')}</button>
         </div>
       </div>
-      <h4 className="mb-3">{`ITENS DO PEDIDO - MESA ${mesa.slice(4)}`}</h4>
+      <h4 className="mb-3">{`${i18n.t('messages.itensPedido')} ${props.location.state.mesa.slice(4)}`}</h4>
       <div className="row">
         <div className="col-md-6">
-          <h5>LANCHES</h5>
+          <h5>{i18n.t('titles.lanches')}</h5>
           <table className="table table-striped">
             <thead className="thead-light">
               <tr>
-                <th className="col-md-5">Nome Lanche</th>
-                <th className="col-md-4">Preço</th>
-                <th className="col-md-3">Quantidade</th>
+                <th className="col-md-5">{i18n.t('formTitles.nomeLanche')}</th>
+                <th className="col-md-4">{i18n.t('formTitles.precoLanche')}</th>
+                <th className="col-md-3">{i18n.t('formTitles.qtde')}</th>
               </tr>
             </thead>
             <tbody>
@@ -181,13 +182,13 @@ const ItensPedido = (props) => {
           </table>
         </div>
         <div className="col-md-6">
-          <h5>BEBIDAS</h5>
+          <h5>{i18n.t('titles.bebidas')}</h5>
           <table className="table table-striped">
             <thead className="thead-light">
               <tr>
-                <th className="col-md-5">Nome Bebida</th>
-                <th className="col-md-4">Preço</th>
-                <th className="col-md-3">Quantidade</th>
+                <th className="col-md-5">{i18n.t('formTitles.nomeBebida')}</th>
+                <th className="col-md-4">{i18n.t('formTitles.precoBebida')}</th>
+                <th className="col-md-3">{i18n.t('formTitles.qtde')}</th>
               </tr>
             </thead>
             <tbody>
@@ -207,8 +208,8 @@ const ItensPedido = (props) => {
       <div className="row">
         <div className="col-md-6"></div>
         <div className="col-md-6 mb-3">
-          <button onClick={() => finalizarPedido()} type="button" className="btn btn-dark float-right btn-lg">Finalizar Pedido</button>
-          <h4 id="total" className="float-right mt-2 mr-2">{`Valor do pedido:  R$${total}`}</h4>
+          <button onClick={() => finalizarPedido()} type="button" className="btn btn-dark float-right btn-lg">{i18n.t('buttons.finalizarPedido')}</button>
+          <h4 id="total" className="float-right mt-2 mr-2">{`${i18n.t('messages.valorPedido')}${total}`}</h4>
         </div>
       </div>
 
@@ -222,7 +223,7 @@ const ItensPedido = (props) => {
           />
           <strong className="me-auto">SystemFood</strong>
         </Toast.Header>
-        <Toast.Body><h4>Pedido finalizado!</h4></Toast.Body>
+        <Toast.Body><h4>{i18n.t('messages.toastPedidoFinalizado')}</h4></Toast.Body>
       </Toast>
     </div>
   )

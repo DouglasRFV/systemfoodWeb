@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { firebaseDb } from "../../firebase";
 import FormularioCadastroLanche from "../FormularioCadastroLanche/FormularioCadastroLanche";
-import './CadastrarLanche.css'
+import './CadastrarLanche.css';
+import { i18n } from '../../translate/i18n';
 
 import Header from '../HeaderHome/Header';
 
@@ -68,11 +69,11 @@ const CadastrarLanche = () => {
       <Header />
       <div className="jumbotron jumbotron-fluid jumboPadding">
         <div className="container-fluid">
-          <h1 className="display-4">Cadastrar Lanches</h1>
+          <h1 className="display-4">{i18n.t('titles.cadastrarLanches')}</h1>
           <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a href="/">Home</a></li>
-            <li className="breadcrumb-item"><a href="/cadastrar-produtos">Cadastrar Produtos</a></li>
-            <li className="breadcrumb-item active" aria-current="page">Cadastrar Lanches</li>
+            <li className="breadcrumb-item"><a href="/">{i18n.t('titles.home')}</a></li>
+            <li className="breadcrumb-item"><a href="/cadastrar-produtos">{i18n.t('titles.cadastrarProdutos')}</a></li>
+            <li className="breadcrumb-item active" aria-current="page">{i18n.t('titles.cadastrarLanches')}</li>
           </ol>
         </div>
       </div>
@@ -85,9 +86,9 @@ const CadastrarLanche = () => {
           <table className="table table-striped">
             <thead className="thead-light">
               <tr>
-                <td>Nome Lanche</td>
-                <td>Preço</td>
-                <td>Ações</td>
+              <td>{i18n.t('formTitles.nomeLanche')}</td>
+                <td>{i18n.t('formTitles.precoLanche')}</td>
+                <td>{i18n.t('titles.acoes')}</td>
               </tr>
             </thead>
             <tbody>

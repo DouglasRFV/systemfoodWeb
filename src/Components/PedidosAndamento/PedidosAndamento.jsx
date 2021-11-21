@@ -3,6 +3,8 @@ import { useHistory } from 'react-router';
 import firebase from "../../firebase"
 import { Toast } from "react-bootstrap";
 import React, { useState } from "react";
+import { i18n } from '../../translate/i18n';
+
 
 import Header from '../HeaderHome/Header';
 
@@ -43,25 +45,25 @@ const PedidosAndamento = () => {
       <Header />
       <div className="jumbotron jumbotron-fluid jumboPadding">
         <div className="container-fluid">
-          <h1 className="display-4">Pedidos em Andamento</h1>
+          <h1 className="display-4">{i18n.t('titles.pedidosAndamento')}</h1>
           <ol className="breadcrumb">
             <li className="breadcrumb-item"><a href="/">Home</a></li>
-            <li className="breadcrumb-item active" aria-current="page">Pedidos em andamento</li>
+            <li className="breadcrumb-item active" aria-current="page">{i18n.t('titles.pedidosAndamento')}</li>
           </ol>
         </div>
       </div>
       <div className="row">
         <div className="col-md-5">
-          <h4>Mesas</h4>
+          <h4>{i18n.t('mesas.mesas')}</h4>
           <div className="row">
             <div className="col-md-6">
               <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa01')} value={'MESA 01'} className="btn btn-primary btn-lg btn-block p-3" />
+                <input type="submit" onClick={() => getPedido('mesa01')} value={i18n.t('mesas.mesa01')} className="btn btn-primary btn-lg btn-block p-3" />
               </div>
             </div>
             <div className="col-md-6">
               <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa02')} value={'MESA 02'} className="btn btn-primary btn-lg btn-block p-3" />
+                <input type="submit" onClick={() => getPedido('mesa02')} value={i18n.t('mesas.mesa02')} className="btn btn-primary btn-lg btn-block p-3" />
               </div>
             </div>
           </div>
@@ -69,12 +71,12 @@ const PedidosAndamento = () => {
           <div className="row">
             <div className="col-md-6">
               <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa03')} value={'MESA 03'} className="btn btn-primary btn-lg btn-block p-3" />
+                <input type="submit" onClick={() => getPedido('mesa03')} value={i18n.t('mesas.mesa03')} className="btn btn-primary btn-lg btn-block p-3" />
               </div>
             </div>
             <div className="col-md-6">
               <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa04')} value={'MESA 04'} className="btn btn-primary btn-lg btn-block p-3" />
+                <input type="submit" onClick={() => getPedido('mesa04')} value={i18n.t('mesas.mesa04')} className="btn btn-primary btn-lg btn-block p-3" />
               </div>
             </div>
           </div>
@@ -82,12 +84,12 @@ const PedidosAndamento = () => {
           <div className="row">
             <div className="col-md-6">
               <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa05')} value={'MESA 05'} className="btn btn-primary btn-lg btn-block p-3" />
+                <input type="submit" onClick={() => getPedido('mesa05')} value={i18n.t('mesas.mesa05')} className="btn btn-primary btn-lg btn-block p-3" />
               </div>
             </div>
             <div className="col-md-6">
               <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa06')} value={'MESA 06'} className="btn btn-primary btn-lg btn-block p-3" />
+                <input type="submit" onClick={() => getPedido('mesa06')} value={i18n.t('mesas.mesa06')} className="btn btn-primary btn-lg btn-block p-3" />
               </div>
             </div>
           </div>
@@ -105,7 +107,7 @@ const PedidosAndamento = () => {
           />
           <strong className="me-auto">SystemFood</strong>
         </Toast.Header>
-        <Toast.Body><h4>Esta mesa não possui pedido em aberto!</h4></Toast.Body>
+        <Toast.Body><h4>{i18n.t('messages.semPedido')}</h4></Toast.Body>
       </Toast>
     </div>
   )

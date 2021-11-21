@@ -6,6 +6,8 @@ import { useHistory } from 'react-router';
 
 import Header from '../HeaderHome/Header';
 import Footer from '../Footer/Footer';
+import { i18n } from '../../translate/i18n';
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
     
@@ -19,11 +21,11 @@ export default (props) => {
         <div>
             <Header/>
             <div className="d-grid gap-2 marginStack">
-                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/cadastrar-produtos')}>Cadastrar Produtos</Button>
-                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/realizar-pedido')}>Realizar Pedido</Button>
-                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/pedidos-andamento')}>Pedidos em Andamento</Button>
-                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/clube-desconto')}>Clube de Desconto</Button>
-                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/controle-usuarios')}>Cadastro de Usuários</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/cadastrar-produtos')}>{i18n.t('buttons.home.cadastrar-produto')}</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/realizar-pedido')}>{i18n.t('buttons.home.realizar-pedido')}</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/pedidos-andamento')}>{i18n.t('buttons.home.pedidos-andamento')}</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/clube-desconto')}>{i18n.t('buttons.home.clube-desconto')}</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/controle-usuarios')}>{i18n.t('buttons.home.cadastro-usuario')}</Button>
             </div>
             <Footer/>
         </div>
@@ -31,10 +33,10 @@ export default (props) => {
       <div>
             <Header/>
             <div className="d-grid gap-2 marginStack">
-                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/cadastrar-produtos')}>Cadastrar Produtos</Button>
-                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/realizar-pedido')}>Realizar Pedido</Button>
-                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/pedidos-andamento')}>Pedidos em Andamento</Button>
-                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/clube-desconto')}>Clube de Desconto</Button>
+            <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/cadastrar-produtos')}>{i18n.t('buttons.home.cadastrar-produto')}</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/realizar-pedido')}>{i18n.t('buttons.home.realizar-pedido')}</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/pedidos-andamento')}>{i18n.t('buttons.home.pedidos-andamento')}</Button>
+                <Button variant="primary" size="lg" className="mb-4" onClick={() => history.push('/clube-desconto')}>{i18n.t('buttons.home.clube-desconto')}</Button>
             </div>
             <Footer/>
         </div>
