@@ -25,7 +25,8 @@ const messages = {
         qtde: "Quantidade",
         nomeCliente: "Nome do Cliente",
         documento: "CPF",
-        telefone: "Telefone"
+        telefone: "Telefone",
+        qtdeCompras: "Quantidade de Compras"
       },
       messages: {
         textLanche: "Clique para acessar o formulário de cadastro de lanches.",
@@ -38,6 +39,8 @@ const messages = {
         valorPedido: "Valor do pedido:  R$",
         toastPedidoSalvo: "Pedido salvo com sucesso!",
         toastPedidoFinalizado: "Pedido finalizado!",
+        toastQtdeCliente: "Quantidade de compras do cliente é:",
+        toastDescontoConcedido: "Desconto concedido!",
       },
       buttons: {
         home: {
@@ -61,6 +64,24 @@ const messages = {
         mesa04: "MESA 04",
         mesa05: "MESA 05",
         mesa06: "MESA 06",
+      },
+      login: {
+        senha: "Senha",
+        confirmaSenha: "Confirme a senha",
+        entrar: "Entrar",
+        esqueceuSenha: "Esquece a senha?",
+        redefinirSenha: "Redefinir Senha",
+        redefinir: "Redefinir",
+        resetSucesso: "Verifique a sua caixa de entrada para mais instruções",
+        resetErro: "Erro ao resetar senha",
+        tipoUsuario: "Tipo de usuário",
+        admin: "Administrador",
+        usuario: "Usuário comum",
+        atualizarPerfil: "Atualizar Perfil",
+        cancelar: "Cancelar",
+        senhasDiferentes: "As senhas não coincidem",
+        senhaEmBranco: "Deixar em branco para manter o mesmo",
+        updateErro: "Falha ao atualizar conta",
       }
     }
   }

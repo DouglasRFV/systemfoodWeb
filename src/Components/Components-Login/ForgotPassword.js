@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react"
-import { Form, Button, Card, Alert, Container } from "react-bootstrap"
-import { useAuth } from "../../contexts/AuthContext"
-import { Link } from "react-router-dom"
+import React, { useRef, useState } from "react";
+import { Form, Button, Card, Alert, Container } from "react-bootstrap";
+import { useAuth } from "../../contexts/AuthContext";
+import { Link } from "react-router-dom";
+import { i18n } from '../../translate/i18n';
 
 export default function ForgotPassword() {
   const emailRef = useRef()
@@ -18,9 +19,9 @@ export default function ForgotPassword() {
       setError("")
       setLoading(true)
       await resetPassword(emailRef.current.value)
-      setMessage("Verifique a sua caixa de entrada para mais instruções")
+      setMessage(`${i18n.t('login.resetSucesso')}`)
     } catch {
-      setError("Erro ao resetar senha")
+      setError(`${i18n.t('login.resetErro')}`)
     }
 
     setLoading(false)
@@ -36,16 +37,16 @@ export default function ForgotPassword() {
         <Card>
           <Card.Body>
             <div style={{ "text-align": "center" }}> <img src="/logo.png" alt="" width="150" height="150" /> </div>
-            <h2 className="text-center mb-4">Redefinir Senha</h2>
+            <h2 className="text-center mb-4">{i18n.t('login.redefinirSenha')}</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             {message && <Alert variant="success">{message}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group id="email">
-                <Form.Label>Email</Form.Label>
+                <Form.Label>E-mail</Form.Label>
                 <Form.Control type="email" ref={emailRef} required />
               </Form.Group>
               <Button disabled={loading} className="w-100 mt-3" type="submit">
-                Redefinir
+                {i18n.t('login.redefinir')}
               </Button>
             </Form>
             <div className="w-100 text-center mt-3">

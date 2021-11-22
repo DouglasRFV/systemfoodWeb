@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert, Container } from "react-bootstrap"
 import { useAuth } from "../../contexts/AuthContext"
-import { Link, useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom";
+import { i18n } from '../../translate/i18n';
 
 export default function Login(props) {
   const emailRef = useRef()
@@ -44,19 +45,19 @@ export default function Login(props) {
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group id="email">
-                <Form.Label>Email</Form.Label>
+                <Form.Label>E-mail</Form.Label>
                 <Form.Control type="email" ref={emailRef} required />
               </Form.Group>
               <Form.Group id="password">
-                <Form.Label>Senha</Form.Label>
+                <Form.Label>{i18n.t('login.senha')}</Form.Label>
                 <Form.Control type="password" ref={passwordRef} required />
               </Form.Group>
               <Button disabled={loading} className="w-100 mt-3" type="submit">
-                Log In
+                {i18n.t('login.entrar')}
               </Button>
             </Form>
             <div className="w-100 text-center mt-3">
-              <Link to="/forgot-password">Esqueceu a senha?</Link>
+              <Link to="/forgot-password">{i18n.t('login.esqueceuSenha')}</Link>
             </div>
           </Card.Body>
         </Card>

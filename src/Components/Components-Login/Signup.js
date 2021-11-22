@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert, Container, Row, Col, Toast } from "react-bootstrap"
-import { useAuth } from "../../contexts/AuthContext"
+import { useAuth } from "../../contexts/AuthContext";
+import { i18n } from '../../translate/i18n';
 
 export default function Signup() {
   const emailRef = useRef();
@@ -51,28 +52,28 @@ export default function Signup() {
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group id="email">
-                <Form.Label>Email</Form.Label>
+                <Form.Label>E-mail</Form.Label>
                 <Form.Control type="email" ref={emailRef} required />
               </Form.Group>
               <Form.Group id="password">
-                <Form.Label>Senha</Form.Label>
+                <Form.Label>{i18n.t('login.senha')}</Form.Label>
                 <Form.Control type="password" ref={passwordRef} required />
               </Form.Group>
               <Form.Group id="password-confirm">
-                <Form.Label>Confirme a senha</Form.Label>
+                <Form.Label>{i18n.t('login.confirmaSenha')}</Form.Label>
                 <Form.Control type="password" ref={passwordConfirmRef} required />
               </Form.Group>
               <Form.Group className="mt-3" controlId="formBasicCheckbox">
-                <Form.Label>Tipo de usuário</Form.Label>
+                <Form.Label>{i18n.t('login.tipoUsuario')}</Form.Label>
                 <Container>
                   <Row>
-                    <Col> <input type="radio" value="admin" name="typeRef" ref={adminRef} /> Administrador</Col>
-                    <Col> <input type="radio" value="user" name="typeRef" ref={userRef} /> Usuário</Col>
+                    <Col> <input type="radio" value="admin" name="typeRef" ref={adminRef} /> {i18n.t('login.admin')}</Col>
+                    <Col> <input type="radio" value="user" name="typeRef" ref={userRef} /> {i18n.t('login.usuario')}</Col>
                   </Row>
                 </Container>
               </Form.Group>
               <Button disabled={loading} className="w-100 mt-3" type="submit">
-                Cadastrar
+                {i18n.t('buttons.cadastrar')}
               </Button>
             </Form>
           </Card.Body>

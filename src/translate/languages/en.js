@@ -25,7 +25,8 @@ const messages = {
         qtde: "Quantity",
         nomeCliente: "Client Name",
         documento: "Document",
-        telefone: "Phone Number"
+        telefone: "Phone Number",
+        qtdeCompras: "Purchase Quantity"
       },
       messages: {
         textLanche: "Click to access the sandwich registration form.",
@@ -38,6 +39,8 @@ const messages = {
         valorPedido: "Order value:  $",
         toastPedidoSalvo: "Order Successfully Saved!",
         toastPedidoFinalizado: "Order completed!",
+        toastQtdeCliente: "The customer's purchase quantity is:",
+        toastDescontoConcedido: "Discount granted!",
       },
       buttons: {
         home: {
@@ -61,6 +64,24 @@ const messages = {
         mesa04: "TABLE 04",
         mesa05: "TABLE 05",
         mesa06: "TABLE 06",
+      },
+      login: {
+        senha: "Password",
+        confirmaSenha: "Confirm password",
+        entrar: "Enter",
+        esqueceuSenha: "Forgot your password?",
+        redefinirSenha: "Password Reset",
+        redefinir: "Reset",
+        resetSucesso: "Check your inbox for further instructions",
+        resetErro: "Error when resetting password",
+        tipoUsuario: "Type user",
+        admin: "Administrator",
+        usuario: "Regular User",
+        atualizarPerfil: "Update Profile",
+        cancelar: "Cancel",
+        senhasDiferentes: "Passwords do not match",
+        senhaEmBranco: "Leave blank to keep the same",
+        updateErro: "Failed to update account",
       }
     }
   }

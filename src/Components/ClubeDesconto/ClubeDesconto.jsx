@@ -92,6 +92,7 @@ export default (props) => {
                 <td>{i18n.t('formTitles.nomeCliente')}</td>
                 <td>{i18n.t('formTitles.documento')}</td>
                 <td>{i18n.t('formTitles.telefone')}</td>
+                <td>{i18n.t('formTitles.qtdeCompras')}</td>
                 <td>{i18n.t('titles.acoes')}</td>
               </tr>
             </thead>
@@ -102,6 +103,7 @@ export default (props) => {
                     <td>{dadosClientes[id].nomeCliente}</td>
                     <td>{dadosClientes[id].cpfCliente}</td>
                     <td>{dadosClientes[id].telefoneCliente}</td>
+                    <td>{dadosClientes[id].qtdeCompras}</td>
                     <td>
                       <a className="btn btn-primary" onClick={() => setIdAtual(id)}>
                         <i className="fas fa-pencil-alt"></i>

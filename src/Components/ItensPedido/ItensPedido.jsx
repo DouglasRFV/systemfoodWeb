@@ -21,6 +21,10 @@ const ItensPedido = (props) => {
   const db = firebase.firestore();
   const [showA, setShowA] = useState(false);
   const toggleShowA = () => setShowA(!showA);
+  const [showB, setShowB] = useState(false);
+  const toggleShowB = () => setShowB(!showB);
+  const [showC, setShowC] = useState(false);
+  const toggleShowC = () => setShowC(!showC);
 
   useEffect(() => {
     const docRef = db.collection("pedidos").doc(mesa);
@@ -64,6 +68,7 @@ const ItensPedido = (props) => {
   let [dadosClientes, setDadosClientes] = useState([]);
   let [cpfClientes] = useState([]);
   let [arrayCompras] = useState([]);
+  let [qtdeCliente, setQtdeCliente] = useState(0);
   let totalCompras = 0;
 
   useEffect(() => {
@@ -91,6 +96,7 @@ const ItensPedido = (props) => {
   function calculaDesconto() {
     const cpf = document.getElementById("cpf").value;
     const resultCliente = arrayCompras.find(({ cpfCliente }) => cpfCliente === cpf);
+    setQtdeCliente(resultCliente.qtdeCompras + 1);
     const id = resultCliente.id;
 
     if (resultCliente.qtdeCompras > 10 || resultCliente.qtdeCompras + 1 === 10) {
@@ -117,6 +123,7 @@ const ItensPedido = (props) => {
           }
         }
       )
+      setShowC(true);
     } else {
       firebaseDb.child(`clube-desconto/${id}`).update(
         { 'qtdeCompras': resultCliente.qtdeCompras + 1 },
@@ -126,6 +133,7 @@ const ItensPedido = (props) => {
           }
         }
       );
+      setShowB(true);
     }
   }
 
@@ -224,6 +232,32 @@ const ItensPedido = (props) => {
           <strong className="me-auto">SystemFood</strong>
         </Toast.Header>
         <Toast.Body><h4>{i18n.t('messages.toastPedidoFinalizado')}</h4></Toast.Body>
+      </Toast>
+
+      <Toast show={showB} delay={3000} autohide onClose={toggleShowB} style={{ position: "absolute", "min-width": "300px", bottom: "1rem", right: "1rem" }}>
+        <Toast.Header>
+          <img
+            src="/logo.png"
+            className="rounded me-2"
+            alt=""
+            width="40" height="40"
+          />
+          <strong className="me-auto">SystemFood</strong>
+        </Toast.Header>
+        <Toast.Body><h4>{`${i18n.t('messages.toastQtdeCliente')} ${qtdeCliente}`}</h4></Toast.Body>
+      </Toast>
+
+      <Toast show={showC} delay={3000} autohide onClose={toggleShowC} style={{ position: "absolute", "min-width": "300px", bottom: "1rem", right: "1rem" }}>
+        <Toast.Header>
+          <img
+            src="/logo.png"
+            className="rounded me-2"
+            alt=""
+            width="40" height="40"
+          />
+          <strong className="me-auto">SystemFood</strong>
+        </Toast.Header>
+        <Toast.Body><h4>{i18n.t('messages.toastDescontoConcedido')} </h4></Toast.Body>
       </Toast>
     </div>
   )

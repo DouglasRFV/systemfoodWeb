@@ -66,7 +66,7 @@ const FormularioCadastroClube = (props) => {
               <i className="fas fa-duotone fa-id-card"></i>
             </div>
           </div>
-          <input required className="form-control" inputMask="999.999.99-99" placeholder={i18n.t('formTitles.documento')} name="cpfCliente" value={values.cpfCliente} onChange={inputChange} />
+          <input required className="form-control" placeholder={i18n.t('formTitles.documento')} name="cpfCliente" value={values.cpfCliente} onChange={inputChange} />
         </div>
       </div>
 

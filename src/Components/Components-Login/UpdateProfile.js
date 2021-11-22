@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert, Container } from "react-bootstrap"
 import { useAuth } from "../../contexts/AuthContext"
-import { Link, useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom";
+import { i18n } from '../../translate/i18n';
 
 export default function UpdateProfile() {
   const emailRef = useRef()
@@ -15,7 +16,7 @@ export default function UpdateProfile() {
   function handleSubmit(e) {
     e.preventDefault()
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("As senhas não coincidem")
+      return setError(`${i18n.t('login.senhasDiferentes')}`)
     }
 
     const promises = []
@@ -34,7 +35,7 @@ export default function UpdateProfile() {
         history.push("/")
       })
       .catch(() => {
-        setError("Falha ao atualizar conta")
+        setError(`${i18n.t('login.senha')}`)
       })
       .finally(() => {
         setLoading(false)
@@ -51,11 +52,11 @@ export default function UpdateProfile() {
         <Card>
           <Card.Body>
             <div style={{ "text-align": "center" }}> <img src="/logo.png" alt="" width="150" height="150" /> </div>
-            <h2 className="text-center mb-4">Atualizar Perfil</h2>
+            <h2 className="text-center mb-4">{i18n.t('login.atualizarPerfil')}</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group id="email">
-                <Form.Label>Email</Form.Label>
+                <Form.Label>E-mail</Form.Label>
                 <Form.Control
                   type="email"
                   ref={emailRef}
@@ -64,29 +65,29 @@ export default function UpdateProfile() {
                 />
               </Form.Group>
               <Form.Group id="password">
-                <Form.Label>Senha</Form.Label>
+                <Form.Label>{i18n.t('login.senha')}</Form.Label>
                 <Form.Control
                   type="password"
                   ref={passwordRef}
-                  placeholder="Deixar em branco para manter o mesmo"
+                  placeholder={i18n.t('login.senhaEmBranco')}
                 />
               </Form.Group>
               <Form.Group id="password-confirm">
-                <Form.Label>Confirme a senha</Form.Label>
+                <Form.Label>{i18n.t('login.confirmaSenha')}</Form.Label>
                 <Form.Control
                   type="password"
                   ref={passwordConfirmRef}
-                  placeholder="Deixar em branco para manter o mesmo"
+                  placeholder={i18n.t('login.senhaEmBranco')}
                 />
               </Form.Group>
               <Button disabled={loading} className="w-100 mt-3" type="submit">
-                Atualizar
+              {i18n.t('buttons.atualizar')}
               </Button>
             </Form>
           </Card.Body>
         </Card>
         <div className="w-100 text-center mt-2">
-          <Link to="/">Cancelar</Link>
+          <Link to="/">{i18n.t('login.cancelar')}</Link>
         </div>
       </div>
     </Container>
