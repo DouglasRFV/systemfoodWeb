@@ -6,6 +6,7 @@ import { Toast } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { firebaseDb } from "../../firebase";
 import { i18n } from '../../translate/i18n';
+import InputMask from 'react-input-mask';
 
 import Header from '../HeaderHome/Header';
 
@@ -160,7 +161,17 @@ const ItensPedido = (props) => {
               <i className="fas fa-duotone fa-id-card"></i>
             </div>
           </div>
-          <input id="cpf" className="form-control" placeholder="CPF" name="cpf" />
+          {/* <input id="cpf" className="form-control" placeholder="CPF" name="cpf" /> */}
+          <InputMask 
+            placeholder={i18n.t('formTitles.documento')} 
+            mask="999.999.999-99" 
+            maskChar=" "
+            name="cpf"
+            style = {{ width: "60%" }}
+            id="cpf"
+          >
+            { ( inputProps ) => <input required className="form-control" { ... inputProps } type = " tel " disableUnderline /> }
+          </InputMask>
           <button onClick={() => calculaDesconto()} type="button" className="btn btn-primary">{i18n.t('buttons.desconto')}</button>
         </div>
       </div>

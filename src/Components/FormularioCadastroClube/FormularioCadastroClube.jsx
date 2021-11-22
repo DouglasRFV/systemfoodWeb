@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Toast } from "react-bootstrap";
 import { i18n } from '../../translate/i18n';
-
+import InputMask from 'react-input-mask';
 
 const FormularioCadastroClube = (props) => {
 
@@ -24,8 +24,10 @@ const FormularioCadastroClube = (props) => {
         ...camposIniciais
       })
     } else {
+      props.dadosClientes[props.idAtual].cpfCliente = 
+      `${props.dadosClientes[props.idAtual].cpfCliente.substring(0, 3) + ".***.***-" + props.dadosClientes[props.idAtual].cpfCliente.substring(12, props.dadosClientes[props.idAtual].cpfCliente.length)}`;
       setValues({
-        ...props.dadosClientes[props.idAtual]
+        ...props.dadosClientes[props.idAtual],
       })
     }
   }, [props.idAtual, props.dadosClientes]);
@@ -67,7 +69,18 @@ const FormularioCadastroClube = (props) => {
               <i className="fas fa-duotone fa-id-card"></i>
             </div>
           </div>
-          <input required className="form-control" placeholder={i18n.t('formTitles.documento')} maxlength="11" name="cpfCliente" value={values.cpfCliente} onChange={inputChange} />
+          <InputMask 
+            placeholder={i18n.t('formTitles.documento')} 
+            mask="999.999.999-99" 
+            maskChar="*"
+            name="cpfCliente" 
+            value={values.cpfCliente} 
+            onChange={inputChange}
+            style = {{ width: "92%" }}
+            type="text"
+          >
+            { ( inputProps ) => <input required className="form-control" { ... inputProps } type = " text " disableUnderline /> }
+          </InputMask>
         </div>
       </div>
 
@@ -78,12 +91,22 @@ const FormularioCadastroClube = (props) => {
               <i className="fas fa-regular fa-phone"></i>
             </div>
           </div>
-          <input id="telefone" className="form-control" placeholder={i18n.t('formTitles.telefone')} maxlength="11" name="telefoneCliente" value={values.telefoneCliente} onChange={inputChange} />
+          <InputMask 
+            placeholder={i18n.t('formTitles.telefone')} 
+            mask="(99)99999-9999" 
+            maskChar=" "
+            name="telefoneCliente" 
+            value={values.telefoneCliente} 
+            onChange={inputChange}
+            style = {{ width: "92%" }}
+          >
+            { ( inputProps ) => <input required className="form-control" { ... inputProps } type = " tel " disableUnderline /> }
+          </InputMask>
         </div>
       </div>
 
       <div className="form-group">
-        <input type="submit" value={props.idAtual === '' ? 'Salvar' : 'Atualizar'} className="btn btn-primary btn-block" />
+        <input type="submit" value={ props.idAtual === '' ? i18n.t('buttons.salvar') : i18n.t('buttons.atualizar') } className="btn btn-primary btn-block" />
       </div>
 
       <Toast show={showA} delay={3000} autohide onClose={toggleShowA} style={{ position: "absolute", "min-width": "300px", bottom: "1rem", right: "1rem" }}>
@@ -96,7 +119,7 @@ const FormularioCadastroClube = (props) => {
           />
           <strong className="me-auto">SystemFood</strong>
         </Toast.Header>
-        <Toast.Body><h6>Insira as informações corretamente!</h6></Toast.Body>
+        <Toast.Body><h6>{i18n.t('messages.infoCorreta')}</h6></Toast.Body>
       </Toast>
     </form>
   )

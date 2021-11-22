@@ -53,7 +53,7 @@ const CadastrarLanche = () => {
   }
 
   const deleteLanche = key => {
-    if (window.confirm('Deseja realmente deletar esse registro?')) {
+    if (window.confirm(`${i18n.t('messages.confirmDelete')}`)) {
       firebaseDb.child(`lanches/${key}`).remove(
         error => {
           if (error) {
@@ -86,7 +86,7 @@ const CadastrarLanche = () => {
           <table className="table table-striped">
             <thead className="thead-light">
               <tr>
-              <td>{i18n.t('formTitles.nomeLanche')}</td>
+                <td>{i18n.t('formTitles.nomeLanche')}</td>
                 <td>{i18n.t('formTitles.precoLanche')}</td>
                 <td>{i18n.t('titles.acoes')}</td>
               </tr>

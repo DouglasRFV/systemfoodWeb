@@ -41,6 +41,7 @@ const messages = {
         toastPedidoFinalizado: "Pedido finalizado!",
         toastQtdeCliente: "Quantidade de compras do cliente é:",
         toastDescontoConcedido: "Desconto concedido!",
+        infoCorreta: "Insira as informações corretamente!",
       },
       buttons: {
         home: {

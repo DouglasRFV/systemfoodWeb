@@ -41,6 +41,7 @@ const messages = {
         toastPedidoFinalizado: "Order completed!",
         toastQtdeCliente: "The customer's purchase quantity is:",
         toastDescontoConcedido: "Discount granted!",
+        infoCorreta: "Enter the information correctly!",
       },
       buttons: {
         home: {
