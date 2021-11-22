@@ -65,7 +65,7 @@ const FormularioCadastroLanche = (props) => {
               <i className="fas fa-duotone fa-dollar-sign"></i>
             </div>
           </div>
-          <input required className="form-control" placeholder={i18n.t('formTitles.precoLanche')} value={values.preco} onChange={inputChange}/>
+          <input required className="form-control" placeholder={i18n.t('formTitles.precoLanche')} name="preco" value={values.preco} onChange={inputChange}/>
         </div>
       </div>
 

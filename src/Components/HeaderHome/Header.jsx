@@ -1,3 +1,4 @@
+/* eslint-disable no-self-assign */
 import './Header.css';
 import React, { useState } from "react"
 import { Nav, Navbar } from 'react-bootstrap';
@@ -14,8 +15,6 @@ export default () => {
   const history = useHistory();
   const emailUser = localStorage.getItem('emailUser');
 
-  const [dropdown, setDropdown] = useState(false);
-  const toggleOpen = () => setDropdown(!dropdown);
   const I18N_STORAGE_KEY = 'i18nextLng';
   const [language] = useState(localStorage.getItem(I18N_STORAGE_KEY));
 

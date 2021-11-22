@@ -99,10 +99,12 @@ export default (props) => {
             <tbody>
               {
                 Object.keys(dadosClientes).map(id => {
+                  const cpfCliente = dadosClientes[id].cpfCliente.substring(0, 3) + ".***.***-" + dadosClientes[id].cpfCliente.substring(9, dadosClientes[id].cpfCliente.length);
+                  const telefoneCliente =  `(${dadosClientes[id].telefoneCliente.substring(0, 2)})${dadosClientes[id].telefoneCliente.substring(2, 7)}-${dadosClientes[id].telefoneCliente.substring(7, dadosClientes[id].telefoneCliente.length)}`
                   return <tr key={id}>
                     <td>{dadosClientes[id].nomeCliente}</td>
-                    <td>{dadosClientes[id].cpfCliente}</td>
-                    <td>{dadosClientes[id].telefoneCliente}</td>
+                    <td>{cpfCliente}</td>
+                    <td>{telefoneCliente}</td>
                     <td>{dadosClientes[id].qtdeCompras}</td>
                     <td>
                       <a className="btn btn-primary" onClick={() => setIdAtual(id)}>

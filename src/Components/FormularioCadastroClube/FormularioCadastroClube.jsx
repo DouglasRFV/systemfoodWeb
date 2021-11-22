@@ -40,6 +40,7 @@ const FormularioCadastroClube = (props) => {
   }
 
   const manipuladorFormEnvio = e => {
+    console.log('chenges', e.target.value);
     e.preventDefault();
     if(values.nomeCliente === '' || values.cpfCliente === '') {
       setShowA(true);
@@ -66,7 +67,7 @@ const FormularioCadastroClube = (props) => {
               <i className="fas fa-duotone fa-id-card"></i>
             </div>
           </div>
-          <input required className="form-control" placeholder={i18n.t('formTitles.documento')} name="cpfCliente" value={values.cpfCliente} onChange={inputChange} />
+          <input required className="form-control" placeholder={i18n.t('formTitles.documento')} maxlength="11" name="cpfCliente" value={values.cpfCliente} onChange={inputChange} />
         </div>
       </div>
 
@@ -77,7 +78,7 @@ const FormularioCadastroClube = (props) => {
               <i className="fas fa-regular fa-phone"></i>
             </div>
           </div>
-          <input id="telefone" className="form-control" placeholder={i18n.t('formTitles.telefone')} name="telefoneCliente" value={values.telefoneCliente} onChange={inputChange} />
+          <input id="telefone" className="form-control" placeholder={i18n.t('formTitles.telefone')} maxlength="11" name="telefoneCliente" value={values.telefoneCliente} onChange={inputChange} />
         </div>
       </div>
 
