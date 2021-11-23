@@ -26,12 +26,12 @@ function App() {
         <Router>
           <AuthProvider>
             <Switch>
-              <Route path="/controle-usuarios" component={Signup} />
               <Route path="/login" component={Login} />
-              <Route path="/cardapio" component={Cardapio} />
-              <PrivateRoute path="/atualizar-perfil" component={UpdateProfile} />
-              <PrivateRoute exact path="/" component={Home} />
               <Route path="/forgot-password" component={ForgotPassword} />
+              <Route path="/cardapio" component={Cardapio} />
+              <PrivateRoute exact path="/" component={Home} />
+              <PrivateRoute exact path="/controle-usuarios" component={Signup} />
+              <PrivateRoute exact path="/atualizar-perfil" component={UpdateProfile} />
               <PrivateRoute exact path="/cadastrar-produtos" component={CadastrarProdutos} />
               <PrivateRoute exact path="/cadastrar-lanche" component={CadastrarLanche} />
               <PrivateRoute exact path="/cadastrar-bebida" component={CadastrarBebida} />

@@ -11,7 +11,7 @@ import { i18n } from '../../translate/i18n';
 export default () => {
 
   const [setError] = useState("")
-  const { logout } = useAuth()
+  const { currentUser, logout } = useAuth()
   const history = useHistory();
   const emailUser = localStorage.getItem('emailUser');
 
@@ -19,15 +19,28 @@ export default () => {
   const [language] = useState(localStorage.getItem(I18N_STORAGE_KEY));
 
   async function handleLogout() {
-    setError("")
+    // setError("")
 
     try {
-      await logout()
-      history.push("/login")
+      await logout().then(() => {
+        history.push("/login")
+      }).catch(error => {
+        console.log('error logout', error);
+      })
     } catch {
       setError("Failed to log out")
     }
   }
+  // async function handleLogout() {
+  //   setError("")
+
+  //   try {
+  //     await logout()
+  //     history.push("/login")
+  //   } catch {
+  //     setError("Failed to log out")
+  //   }
+  // }
 
   const handleDropdownChange = (event) => {
     console.log(event.target.value);
@@ -52,8 +65,8 @@ export default () => {
         <a href="/"><h3 className="mt-0 mb-0 fontConfig">SystemFood</h3></a>
         <Nav.Link title="Perfil" href="/atualizar-perfil"><h6 className="mt-3 text-info">{emailUser}</h6></Nav.Link>
 
-        <Nav className="justify-content-end" style={{ width: "100%", marginRight: "20px" }} onClick={() => handleLogout()}>
-          <Nav.Link title={i18n.t('titles.sair')} href="/login"><i className="fas fa-sign-out-alt fa-2x"></i></Nav.Link>
+        <Nav className="justify-content-end" style={{ width: "100%", marginRight: "20px" }} onClick={handleLogout}>
+          <Nav.Link title={i18n.t('titles.sair')}><i className="fas fa-sign-out-alt fa-2x"></i></Nav.Link>
         </Nav>
         <select title={i18n.t('titles.idioma')} className="form-select" value={language} onChange={(event) => handleDropdownChange(event)} style={{ width: "15%", marginRight: "20px" }}>
           <option value="pt-BR">PT</option>
@@ -63,4 +76,3 @@ export default () => {
     </div>
   );
 }
-<i className="fa-solid fa-arrow-right-from-bracket"></i>

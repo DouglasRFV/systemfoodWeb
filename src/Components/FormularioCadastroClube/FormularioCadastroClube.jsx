@@ -79,7 +79,7 @@ const FormularioCadastroClube = (props) => {
             style = {{ width: "92%" }}
             type="text"
           >
-            { ( inputProps ) => <input required className="form-control" { ... inputProps } type = " text " disableUnderline /> }
+            { ( inputProps ) => <input required className="form-control" { ... inputProps } type = " text " /> }
           </InputMask>
         </div>
       </div>
@@ -100,7 +100,7 @@ const FormularioCadastroClube = (props) => {
             onChange={inputChange}
             style = {{ width: "92%" }}
           >
-            { ( inputProps ) => <input required className="form-control" { ... inputProps } type = " tel " disableUnderline /> }
+            { ( inputProps ) => <input required className="form-control" { ... inputProps } type = " tel "  /> }
           </InputMask>
         </div>
       </div>

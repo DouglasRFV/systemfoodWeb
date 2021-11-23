@@ -171,7 +171,7 @@ const ItensPedido = (props) => {
               style={{ width: "60%" }}
               id="cpf"
             >
-              {(inputProps) => <input required className="form-control" {...inputProps} type=" tel " disableUnderline />}
+              {(inputProps) => <input required className="form-control" {...inputProps} type=" tel " />}
             </InputMask>
             <button onClick={() => calculaDesconto()} type="button" className="btn btn-primary">{i18n.t('buttons.desconto')}</button>
           </div>
