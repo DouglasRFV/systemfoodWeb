@@ -139,138 +139,140 @@ const ItensPedido = (props) => {
   }
 
   return (
-    <div className="container-fluid">
+    <>
       <Header />
-      <div className="jumbotron jumbotron-fluid jumboPadding">
-        <div className="container-fluid">
-          <h1 className="display-4">{i18n.t('titles.realizarPedidos')}</h1>
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a href="/">Home</a></li>
-            <li className="breadcrumb-item"><a href="/pedidos-andamento">{i18n.t('titles.pedidosAndamento')}</a></li>
-            <li className="breadcrumb-item active" aria-current="page">{i18n.t('titles.realizarPedidos')}</li>
-          </ol>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-8">
-          <h6 className="float-right mt-2">{i18n.t('messages.aplicarClube')}</h6>
-        </div>
-        <div className="form-group input-group col-md-4">
-          <div className="input-group-prepend">
-            <div className="input-group-text">
-              <i className="fas fa-duotone fa-id-card"></i>
-            </div>
+      <div className="container-fluid">
+        <div className="jumbotron jumbotron-fluid jumboPadding">
+          <div className="container-fluid">
+            <h1 className="display-4">{i18n.t('titles.realizarPedidos')}</h1>
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item"><a href="/">Home</a></li>
+              <li className="breadcrumb-item"><a href="/pedidos-andamento">{i18n.t('titles.pedidosAndamento')}</a></li>
+              <li className="breadcrumb-item active" aria-current="page">{i18n.t('titles.realizarPedidos')}</li>
+            </ol>
           </div>
-          {/* <input id="cpf" className="form-control" placeholder="CPF" name="cpf" /> */}
-          <InputMask 
-            placeholder={i18n.t('formTitles.documento')} 
-            mask="999.999.999-99" 
-            maskChar=" "
-            name="cpf"
-            style = {{ width: "60%" }}
-            id="cpf"
-          >
-            { ( inputProps ) => <input required className="form-control" { ... inputProps } type = " tel " disableUnderline /> }
-          </InputMask>
-          <button onClick={() => calculaDesconto()} type="button" className="btn btn-primary">{i18n.t('buttons.desconto')}</button>
         </div>
-      </div>
-      <h4 className="mb-3">{`${i18n.t('messages.itensPedido')} ${props.location.state.mesa.slice(4)}`}</h4>
-      <div className="row">
-        <div className="col-md-6">
-          <h5>{i18n.t('titles.lanches')}</h5>
-          <table className="table table-striped">
-            <thead className="thead-light">
-              <tr>
-                <th className="col-md-5">{i18n.t('formTitles.nomeLanche')}</th>
-                <th className="col-md-4">{i18n.t('formTitles.precoLanche')}</th>
-                <th className="col-md-3">{i18n.t('formTitles.qtde')}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                Object.keys(dadosLanches).map(id => {
-                  return <tr key={id}>
-                    <td>{dadosLanches[id].nomeLanche}</td>
-                    <td>{dadosLanches[id].precoLanche}</td>
-                    <td>{dadosLanches[id].qtdeLanche}</td>
-                  </tr>
-                })
-              }
-            </tbody>
-          </table>
+        <div className="row">
+          <div className="col-md-8">
+            <h6 className="float-right mt-2">{i18n.t('messages.aplicarClube')}</h6>
+          </div>
+          <div className="form-group input-group col-md-4">
+            <div className="input-group-prepend">
+              <div className="input-group-text">
+                <i className="fas fa-duotone fa-id-card"></i>
+              </div>
+            </div>
+            {/* <input id="cpf" className="form-control" placeholder="CPF" name="cpf" /> */}
+            <InputMask
+              placeholder={i18n.t('formTitles.documento')}
+              mask="999.999.999-99"
+              maskChar=" "
+              name="cpf"
+              style={{ width: "60%" }}
+              id="cpf"
+            >
+              {(inputProps) => <input required className="form-control" {...inputProps} type=" tel " disableUnderline />}
+            </InputMask>
+            <button onClick={() => calculaDesconto()} type="button" className="btn btn-primary">{i18n.t('buttons.desconto')}</button>
+          </div>
         </div>
-        <div className="col-md-6">
-          <h5>{i18n.t('titles.bebidas')}</h5>
-          <table className="table table-striped">
-            <thead className="thead-light">
-              <tr>
-                <th className="col-md-5">{i18n.t('formTitles.nomeBebida')}</th>
-                <th className="col-md-4">{i18n.t('formTitles.precoBebida')}</th>
-                <th className="col-md-3">{i18n.t('formTitles.qtde')}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                Object.keys(dadosBebidas).map(id => {
-                  return <tr key={id}>
-                    <td>{dadosBebidas[id].nomeBebida}</td>
-                    <td>{dadosBebidas[id].precoBebida}</td>
-                    <td>{dadosBebidas[id].qtdeBebida}</td>
-                  </tr>
-                })
-              }
-            </tbody>
-          </table>
+        <h4 className="mb-3">{`${i18n.t('messages.itensPedido')} ${props.location.state.mesa.slice(4)}`}</h4>
+        <div className="row">
+          <div className="col-md-6">
+            <h5>{i18n.t('titles.lanches')}</h5>
+            <table className="table table-striped">
+              <thead className="thead-light">
+                <tr>
+                  <th className="col-md-5">{i18n.t('formTitles.nomeLanche')}</th>
+                  <th className="col-md-4">{i18n.t('formTitles.precoLanche')}</th>
+                  <th className="col-md-3">{i18n.t('formTitles.qtde')}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  Object.keys(dadosLanches).map(id => {
+                    return <tr key={id}>
+                      <td>{dadosLanches[id].nomeLanche}</td>
+                      <td>{dadosLanches[id].precoLanche}</td>
+                      <td>{dadosLanches[id].qtdeLanche}</td>
+                    </tr>
+                  })
+                }
+              </tbody>
+            </table>
+          </div>
+          <div className="col-md-6">
+            <h5>{i18n.t('titles.bebidas')}</h5>
+            <table className="table table-striped">
+              <thead className="thead-light">
+                <tr>
+                  <th className="col-md-5">{i18n.t('formTitles.nomeBebida')}</th>
+                  <th className="col-md-4">{i18n.t('formTitles.precoBebida')}</th>
+                  <th className="col-md-3">{i18n.t('formTitles.qtde')}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  Object.keys(dadosBebidas).map(id => {
+                    return <tr key={id}>
+                      <td>{dadosBebidas[id].nomeBebida}</td>
+                      <td>{dadosBebidas[id].precoBebida}</td>
+                      <td>{dadosBebidas[id].qtdeBebida}</td>
+                    </tr>
+                  })
+                }
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-      <div className="row">
-        <div className="col-md-6"></div>
-        <div className="col-md-6 mb-3">
-          <button onClick={() => finalizarPedido()} type="button" className="btn btn-dark float-right btn-lg">{i18n.t('buttons.finalizarPedido')}</button>
-          <h4 id="total" className="float-right mt-2 mr-2">{`${i18n.t('messages.valorPedido')}${total}`}</h4>
+        <div className="row">
+          <div className="col-md-6"></div>
+          <div className="col-md-6 mb-3">
+            <button onClick={() => finalizarPedido()} type="button" className="btn btn-dark float-right btn-lg">{i18n.t('buttons.finalizarPedido')}</button>
+            <h4 id="total" className="float-right mt-2 mr-2">{`${i18n.t('messages.valorPedido')}${total}`}</h4>
+          </div>
         </div>
-      </div>
 
-      <Toast show={showA} delay={3000} autohide onClose={toggleShowA} style={{ position: "absolute", "min-width": "300px", bottom: "1rem", right: "1rem" }}>
-        <Toast.Header>
-          <img
-            src="/logo.png"
-            className="rounded me-2"
-            alt=""
-            width="40" height="40"
-          />
-          <strong className="me-auto">SystemFood</strong>
-        </Toast.Header>
-        <Toast.Body><h4>{i18n.t('messages.toastPedidoFinalizado')}</h4></Toast.Body>
-      </Toast>
+        <Toast show={showA} delay={3000} autohide onClose={toggleShowA} style={{ position: "absolute", "min-width": "300px", bottom: "1rem", right: "1rem" }}>
+          <Toast.Header>
+            <img
+              src="/logo.png"
+              className="rounded me-2"
+              alt=""
+              width="40" height="40"
+            />
+            <strong className="me-auto">SystemFood</strong>
+          </Toast.Header>
+          <Toast.Body><h4>{i18n.t('messages.toastPedidoFinalizado')}</h4></Toast.Body>
+        </Toast>
 
-      <Toast show={showB} delay={3000} autohide onClose={toggleShowB} style={{ position: "absolute", "min-width": "300px", bottom: "1rem", right: "1rem" }}>
-        <Toast.Header>
-          <img
-            src="/logo.png"
-            className="rounded me-2"
-            alt=""
-            width="40" height="40"
-          />
-          <strong className="me-auto">SystemFood</strong>
-        </Toast.Header>
-        <Toast.Body><h4>{`${i18n.t('messages.toastQtdeCliente')} ${qtdeCliente}`}</h4></Toast.Body>
-      </Toast>
+        <Toast show={showB} delay={3000} autohide onClose={toggleShowB} style={{ position: "absolute", "min-width": "300px", bottom: "1rem", right: "1rem" }}>
+          <Toast.Header>
+            <img
+              src="/logo.png"
+              className="rounded me-2"
+              alt=""
+              width="40" height="40"
+            />
+            <strong className="me-auto">SystemFood</strong>
+          </Toast.Header>
+          <Toast.Body><h4>{`${i18n.t('messages.toastQtdeCliente')} ${qtdeCliente}`}</h4></Toast.Body>
+        </Toast>
 
-      <Toast show={showC} delay={3000} autohide onClose={toggleShowC} style={{ position: "absolute", "min-width": "300px", bottom: "1rem", right: "1rem" }}>
-        <Toast.Header>
-          <img
-            src="/logo.png"
-            className="rounded me-2"
-            alt=""
-            width="40" height="40"
-          />
-          <strong className="me-auto">SystemFood</strong>
-        </Toast.Header>
-        <Toast.Body><h4>{i18n.t('messages.toastDescontoConcedido')} </h4></Toast.Body>
-      </Toast>
-    </div>
+        <Toast show={showC} delay={3000} autohide onClose={toggleShowC} style={{ position: "absolute", "min-width": "300px", bottom: "1rem", right: "1rem" }}>
+          <Toast.Header>
+            <img
+              src="/logo.png"
+              className="rounded me-2"
+              alt=""
+              width="40" height="40"
+            />
+            <strong className="me-auto">SystemFood</strong>
+          </Toast.Header>
+          <Toast.Body><h4>{i18n.t('messages.toastDescontoConcedido')} </h4></Toast.Body>
+        </Toast>
+      </div>
+    </>
   )
 }
 

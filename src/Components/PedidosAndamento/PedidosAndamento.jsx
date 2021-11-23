@@ -41,75 +41,77 @@ const PedidosAndamento = () => {
 
 
   return (
-    <div className="container-fluid">
+    <>
       <Header />
-      <div className="jumbotron jumbotron-fluid jumboPadding">
-        <div className="container-fluid">
-          <h1 className="display-4">{i18n.t('titles.pedidosAndamento')}</h1>
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a href="/">Home</a></li>
-            <li className="breadcrumb-item active" aria-current="page">{i18n.t('titles.pedidosAndamento')}</li>
-          </ol>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-5">
-          <h4>{i18n.t('mesas.mesas')}</h4>
-          <div className="row">
-            <div className="col-md-6">
-              <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa01')} value={i18n.t('mesas.mesa01')} className="btn btn-primary btn-lg btn-block p-3" />
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa02')} value={i18n.t('mesas.mesa02')} className="btn btn-primary btn-lg btn-block p-3" />
-              </div>
-            </div>
+      <div className="container-fluid">
+        <div className="jumbotron jumbotron-fluid jumboPadding">
+          <div className="container-fluid">
+            <h1 className="display-4">{i18n.t('titles.pedidosAndamento')}</h1>
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item"><a href="/">Home</a></li>
+              <li className="breadcrumb-item active" aria-current="page">{i18n.t('titles.pedidosAndamento')}</li>
+            </ol>
           </div>
+        </div>
+        <div className="row">
+          <div className="col-md-5">
+            <h4>{i18n.t('mesas.mesas')}</h4>
+            <div className="row">
+              <div className="col-md-6">
+                <div className="form-group">
+                  <input type="submit" onClick={() => getPedido('mesa01')} value={i18n.t('mesas.mesa01')} className="btn btn-primary btn-lg btn-block p-3" />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="form-group">
+                  <input type="submit" onClick={() => getPedido('mesa02')} value={i18n.t('mesas.mesa02')} className="btn btn-primary btn-lg btn-block p-3" />
+                </div>
+              </div>
+            </div>
 
-          <div className="row">
-            <div className="col-md-6">
-              <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa03')} value={i18n.t('mesas.mesa03')} className="btn btn-primary btn-lg btn-block p-3" />
+            <div className="row">
+              <div className="col-md-6">
+                <div className="form-group">
+                  <input type="submit" onClick={() => getPedido('mesa03')} value={i18n.t('mesas.mesa03')} className="btn btn-primary btn-lg btn-block p-3" />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="form-group">
+                  <input type="submit" onClick={() => getPedido('mesa04')} value={i18n.t('mesas.mesa04')} className="btn btn-primary btn-lg btn-block p-3" />
+                </div>
               </div>
             </div>
-            <div className="col-md-6">
-              <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa04')} value={i18n.t('mesas.mesa04')} className="btn btn-primary btn-lg btn-block p-3" />
-              </div>
-            </div>
-          </div>
 
-          <div className="row">
-            <div className="col-md-6">
-              <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa05')} value={i18n.t('mesas.mesa05')} className="btn btn-primary btn-lg btn-block p-3" />
+            <div className="row">
+              <div className="col-md-6">
+                <div className="form-group">
+                  <input type="submit" onClick={() => getPedido('mesa05')} value={i18n.t('mesas.mesa05')} className="btn btn-primary btn-lg btn-block p-3" />
+                </div>
               </div>
-            </div>
-            <div className="col-md-6">
-              <div className="form-group">
-                <input type="submit" onClick={() => getPedido('mesa06')} value={i18n.t('mesas.mesa06')} className="btn btn-primary btn-lg btn-block p-3" />
+              <div className="col-md-6">
+                <div className="form-group">
+                  <input type="submit" onClick={() => getPedido('mesa06')} value={i18n.t('mesas.mesa06')} className="btn btn-primary btn-lg btn-block p-3" />
+                </div>
               </div>
             </div>
           </div>
+          <div className="col-md-7">
+          </div>
         </div>
-        <div className="col-md-7">
-        </div>
+        <Toast show={showA} delay={3000} autohide onClose={toggleShowA} style={{ position: "absolute", minWidth: "300px", bottom: "1rem", right: "1rem" }}>
+          <Toast.Header>
+            <img
+              src="/logo.png"
+              className="rounded me-2"
+              alt=""
+              width="40" height="40"
+            />
+            <strong className="me-auto">SystemFood</strong>
+          </Toast.Header>
+          <Toast.Body><h4>{i18n.t('messages.semPedido')}</h4></Toast.Body>
+        </Toast>
       </div>
-      <Toast show={showA} delay={3000} autohide onClose={toggleShowA} style={{ position: "absolute", minWidth: "300px", bottom: "1rem", right: "1rem" }}>
-        <Toast.Header>
-          <img
-            src="/logo.png"
-            className="rounded me-2"
-            alt=""
-            width="40" height="40"
-          />
-          <strong className="me-auto">SystemFood</strong>
-        </Toast.Header>
-        <Toast.Body><h4>{i18n.t('messages.semPedido')}</h4></Toast.Body>
-      </Toast>
-    </div>
+    </>
   )
 }
 

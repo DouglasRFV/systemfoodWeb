@@ -68,57 +68,59 @@ export default (props) => {
   }
 
   return (
-    <div className="container-fluid">
+    <>
       <Header />
-      <div className="jumbotron jumbotron-fluid jumboPadding">
-        <div className="container-fluid">
-          <h1 className="display-4">{i18n.t('titles.clubeDesconto')}</h1>
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a href="/">Home</a></li>
-            <li className="breadcrumb-item active" aria-current="page">{i18n.t('titles.clubeDesconto')}</li>
-          </ol>
+      <div className="container-fluid">
+        <div className="jumbotron jumbotron-fluid jumboPadding">
+          <div className="container-fluid">
+            <h1 className="display-4">{i18n.t('titles.clubeDesconto')}</h1>
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item"><a href="/">Home</a></li>
+              <li className="breadcrumb-item active" aria-current="page">{i18n.t('titles.clubeDesconto')}</li>
+            </ol>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-5">
+            <FormularioCadastroClube {...({ addEdit, idAtual, dadosClientes })} />
+          </div>
+          <div className="col-md-7">
+            <table className="table table-striped">
+              <thead className="thead-light">
+                <tr>
+                  <td>{i18n.t('formTitles.nomeCliente')}</td>
+                  <td>{i18n.t('formTitles.documento')}</td>
+                  <td>{i18n.t('formTitles.telefone')}</td>
+                  <td>{i18n.t('formTitles.qtdeCompras')}</td>
+                  <td>{i18n.t('titles.acoes')}</td>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  Object.keys(dadosClientes).map(id => {
+                    const cpfCliente = dadosClientes[id].cpfCliente.substring(0, 3) + ".***.***-" + dadosClientes[id].cpfCliente.substring(12, dadosClientes[id].cpfCliente.length);
+                    return <tr key={id}>
+                      <td>{dadosClientes[id].nomeCliente}</td>
+                      <td>{cpfCliente}</td>
+                      <td>{dadosClientes[id].telefoneCliente}</td>
+                      <td>{dadosClientes[id].qtdeCompras}</td>
+                      <td>
+                        <a className="btn btn-primary" onClick={() => setIdAtual(id)}>
+                          <i className="fas fa-pencil-alt"></i>
+                        </a>
+                        {'            '}
+                        <a className="btn btn-danger" onClick={() => deleteLanche(id)}>
+                          <i className="fas fa-trash-alt"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  })
+                }
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col-md-5">
-          <FormularioCadastroClube {...({ addEdit, idAtual, dadosClientes })} />
-        </div>
-        <div className="col-md-7">
-          <table className="table table-striped">
-            <thead className="thead-light">
-              <tr>
-                <td>{i18n.t('formTitles.nomeCliente')}</td>
-                <td>{i18n.t('formTitles.documento')}</td>
-                <td>{i18n.t('formTitles.telefone')}</td>
-                <td>{i18n.t('formTitles.qtdeCompras')}</td>
-                <td>{i18n.t('titles.acoes')}</td>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                Object.keys(dadosClientes).map(id => {
-                  const cpfCliente = dadosClientes[id].cpfCliente.substring(0, 3) + ".***.***-" + dadosClientes[id].cpfCliente.substring(12, dadosClientes[id].cpfCliente.length);
-                  return <tr key={id}>
-                    <td>{dadosClientes[id].nomeCliente}</td>
-                    <td>{cpfCliente}</td>
-                    <td>{dadosClientes[id].telefoneCliente}</td>
-                    <td>{dadosClientes[id].qtdeCompras}</td>
-                    <td>
-                      <a className="btn btn-primary" onClick={() => setIdAtual(id)}>
-                        <i className="fas fa-pencil-alt"></i>
-                      </a>
-                      {'            '}
-                      <a className="btn btn-danger" onClick={() => deleteLanche(id)}>
-                        <i className="fas fa-trash-alt"></i>
-                      </a>
-                    </td>
-                  </tr>
-                })
-              }
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    </>
   )
 }
